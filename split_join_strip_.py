@@ -85,3 +85,12 @@ sd = "asdf" + "\n" + "\n".join("1234")
 print(st,  "Таблица в Питоне", "\n")
 print(sd,  "Таблица в Питоне", "\n")
 
+
+# LIST[STR, STR, STR] mutable in LIST[STR] or STR or WORDS
+list_str = ['scikit learn, pandas,  data science ', 'Is anyone , data science ', 'Is anyone , data science ']
+list_words = [words for string in list_str for words in string.split(",")]
+print(list_words, "LIST[STR, STR, STR] mutable in LIST[STR] or STR or WORDS", "\n")
+
+print("выделение слов из LIST[STR, STR, STR]:")
+for word in list_words:
+    print(word)

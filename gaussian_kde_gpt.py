@@ -3,6 +3,17 @@ import matplotlib.pyplot as plt
 from scipy.stats import gaussian_kde
 
 
+
+
+
+
+
+
+
+
+
+
+
 """gaussian_kde - оценка плотности вероятности на основе ядерного сглаживания для заданной выборки данных"""
 # Создаем случайную выборку
 np.random.seed(0)

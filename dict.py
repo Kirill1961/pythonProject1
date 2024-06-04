@@ -91,3 +91,18 @@ my_dict = {}  # Создание пустого словаря
 my_dict.update({'key1': 'value1', 'key2': 'value2'})
 
 print(my_dict, "update - добавление в словарь нескольких ключей и значений")
+
+
+# dict() mutable in set() and interception
+a = {'scikit learn': 1, 'pandas': 2, 'data science': 4, 'Is anyone': 1, 'data_gay': 1, 'data_gal': 1}
+b = {'data_gay': 2, 'data_gal': 3, 'data science': 1, 'Is anyone': 2}
+
+print(set(a.keys()).intersection(set(a.keys())), " dict() mutable in set() and interception", "\n")
+print(set(a.keys()) & (set(a.keys())), " dict() mutable in set() and '&'", "\n")
+
+# Создание словаря, пустой, из кортежей и тд
+dict_a = dict()
+print(dict_a, "Создание словаря, пустой", "\n")
+tupl_ = [('a', 'b'), (2, 'a'), ('b', 'a')]
+dict_b = dict(tupl_)
+print(dict_b, "Создание словаря,  из кортежей", "\n")

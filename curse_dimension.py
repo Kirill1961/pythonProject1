@@ -3,7 +3,7 @@ from turtle import distance
 import math
 from statistics import mean
 
-direction
+# direction
 # Случайные точки
 def random_point(dim):
     # print([random.random() for _ in range(dim)])

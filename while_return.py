@@ -178,3 +178,31 @@ while True:  # True - бесконечный цикл
         break
 
     print(x, "True в условии, останов по break")
+
+
+# Останов while по input
+
+def cr(): print("\t" * 4, "red")
+
+
+def cb(): print("\t" * 4, "blue")
+
+
+def cw(): print("\t" * 4, "white")
+
+
+def cbl(): print("\t" * 4, "black")
+
+
+selectcolor = {0: cr, 1: cb, 2: cw, 3: cbl}
+# selection = 0
+while True:
+    print("0 - r")
+    print("1 - b")
+    print("2 - w")
+    print("3 - bl")
+    selection = int(input("num color:"))
+    if (selection >= 0) and (selection < 4):
+        selectcolor[selection]()
+    else:
+        break

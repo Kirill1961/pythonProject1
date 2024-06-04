@@ -41,18 +41,18 @@ for i in count_up(-1):
     print(i, ' 1111111')
 
 
-# # /////////////////
-# def count_for(k, s, g):
-#     for fi in range(k, s, g):
-#         yield fi
-#
-#
-# g_f = count_for(5, 0, -1)
-# print(next(g_f))
-# print(next(g_f))
-# print(next(g_f))
-# print(next(g_f))
-# print(next(g_f))
+# /////////////////
+def count_for(k, s, g):
+    for fi in range(k, s, g):
+        yield fi
+
+
+g_f = count_for(5, 0, -1)
+print(next(g_f))
+print(next(g_f))
+print(next(g_f))
+print(next(g_f))
+print(next(g_f))
 
 #
 # for ig in range(10, 5, -1):
@@ -71,15 +71,15 @@ for i in count_up(-1):
 #     print (i_gen, end=' ')
 
 
-# """ klassik generator """
-#
-# def count_up(n):
-#     res = []
-#     while n != 10:
-#         res.append(n)
-#         n+=1
-#     return (res)
-# print( count_up(1))
+""" klassik generator """
+
+def count_up(n):
+    res = []
+    while n != 10:
+        res.append(n)
+        n+=1
+    return (res)
+print( count_up(1))
 #
 # def count_for(k):
 #     for fi in range(k):
@@ -145,46 +145,52 @@ def f():
 for i in f():
     print(i, " По условию отсекаем часть (0,5) генерируемых значений")
 
+#
+# def cr_gen(x, y):
+#     c = x + y
+#     yield (c)
+#
+#
+# for i in cr_gen(5, 6):
+#     print(i)
+# print(cr_gen(2, 3))
+#
+# import requests
+#
+# urls = ('http://headfirstlabs.com', 'http://twitter.com', 'https://www.oreilly.com/')
+#
+# """ Другой вариант - поместить значения перебираемые из ф-ции gen_req_ex (urls)
+#     в ТРИ переменные: s , d , f, тк yield возвращает три значения а затем их вывести.
+#     Используем yield. Результат будет без скобок"""
+#
+#
+# def gen_req_ex(urls: tuple) -> tuple:
+#     for resp in (requests.get(url) for url in urls):
+#         yield (len(resp.content), resp.status_code, resp.url)
+#
+#
+# for s, d, f in (gen_req_ex(urls)):
+#     print(s, d, f, '|/|/')
+#
+# """Если результат выводить через одну переменную, то выйдет кортеж"""
+# for k in (gen_req_ex(urls)):
+#     print(k, '///')
+#
+# """_________________Вывод словаря_____________________________________"""
+#
+#
+# def gen_req_ex(urls: tuple) -> tuple:
+#     for resp in (requests.get(url) for url in urls):
+#         yield {len(resp.content): [resp.status_code, resp.url]}
+#
+#
+# for k in (gen_req_ex(urls)):
+#     print(k, '///')
 
-def cr_gen(x, y):
-    c = x + y
-    yield (c)
 
+""" klassik generator """
 
-for i in cr_gen(5, 6):
-    print(i)
-print(cr_gen(2, 3))
-
-import requests
-
-urls = ('http://headfirstlabs.com', 'http://twitter.com', 'https://www.oreilly.com/')
-
-""" Другой вариант - поместить значения перебираемые из ф-ции gen_req_ex (urls)
-    в ТРИ переменные: s , d , f, тк yield возвращает три значения а затем их вывести.
-    Используем yield. Результат будет без скобок"""
-
-
-def gen_req_ex(urls: tuple) -> tuple:
-    for resp in (requests.get(url) for url in urls):
-        yield (len(resp.content), resp.status_code, resp.url)
-
-
-for s, d, f in (gen_req_ex(urls)):
-    print(s, d, f, '|/|/')
-
-"""Если результат выводить через одну переменную, то выйдет кортеж"""
-for k in (gen_req_ex(urls)):
-    print(k, '///')
-
-"""_________________Вывод словаря_____________________________________"""
-
-
-def gen_req_ex(urls: tuple) -> tuple:
-    for resp in (requests.get(url) for url in urls):
-        yield {len(resp.content): [resp.status_code, resp.url]}
-
-
-for k in (gen_req_ex(urls)):
-    print(k, '///')
-
-
+def f(x):
+    for i in x:
+        yield i ** 2
+print(list(f([1, 2, 3])), "Простое использование yield")
