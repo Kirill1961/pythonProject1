@@ -115,7 +115,7 @@ print(f, " Сортируем список кортежей по индексу 
 
 # СРЕЗЫ
 f = [(2, 3, 21), (-14, 10, 2), (1, -5, 17), (-67, 0, 12), (15, 1, 33), (0.5, -9, 77)]
-print([i for i in filter(lambda row: row, f)][-1:], " СРЕЗЫ последняя кроме всех")
+print([i for i in filter(lambda row: row, f)][-1:], " СРЕЗЫ последняя кроме всех ")
 print([i for i in filter(lambda row: row, f)][:-1], " СРЕЗЫ все кроме последней")
 print([i for i in filter(lambda row: row, f)][-4:], " СРЕЗЫ последние 4 значения")
 print([i for i in filter(lambda row: row, f)][:-2], " СРЕЗЫ все кроме 2x последних")
@@ -236,11 +236,12 @@ l = [1, 2]
 lb = (lambda x: (l.pop(), l.append(x), l.insert(0, 100)))(10)
 print(l, " Использование цепочки методов в lambda функции, здесь применены l.pop(),l.append(x), l.insert(0, 100)", "\n")
 
-# reduce действия со списком
+# reduce действия со списком, в lambda пишем формулу по которой редуцируем / свёртываем ОБ
 
-print(reduce(lambda x, y: x * y, (2, 5)), " reduce действия со списком", "\n")
+print(reduce(lambda x, y: x * y, (2, 5)), " reduce действия со списком, в lambda пишем формулу "
+                                          "по которой редуцируем / свёртываем ОБ", "\n")
 
-# Перемножение, сложение, и тд с LC , lambda, reduce. Списки с разным len
+# Перемножение, сложение, и тд с LC , lambda, reduce. Списки с разным len(LC - list-comprehension)
 print([[reduce(lambda x, y: x * y, (m)) for m in list(i)]
        for i in list(map(lambda y: zip(y, b), x))], " Перемножение, сложение, и тд с LC , lambda, "
                                                     "reduce. Списки с разным len", "\n")
@@ -249,7 +250,7 @@ print([[reduce(lambda x, y: x * y, (m)) for m in list(i)]
 a = [1, 2, 3, 0.5]
 print(min(range(len(a)), key=lambda i: a[i]), "min значение в списке, проверка поиндексно", "\n")
 
-#  Преобразование в матрицу 1 / 0 по совпадению в списках
+#  Преобразование в матрицу 1 / 0 по совпадению в списках (adjacency)
 b = [9, 5, 2, 10, 10, 10, 10, 1, 9, 3]
 d = [[5, 9], [11, 10], [13, 4], [6, 10], [11, 12]]
 n = list(map(lambda x: [1 if j in x else 0 for j in b], d))
