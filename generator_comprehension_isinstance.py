@@ -1,7 +1,7 @@
 """ Генератор списков или Списочное включение или list comprehension смысел в том что ставим всё выражение в [ ] вместо
     метода append тем самым уменьшаем ко-во строк кода, генератор вызывает append автоматически,
     то же самое можно делать со словарями"""
-
+import random
 from functools import reduce
 import random as rn
 
@@ -140,8 +140,8 @@ print(
 )
 
 # Генерация LIST[LIST] разной длинны
-a = [[rn.random() for i in range(5)] for _ in range(2)]
-b = [[rn.random() for i in range(5)] for _ in range(1)]
+a = [[rn.randint(1, 10) for i in range(5)] for _ in range(3)]
+b = [[rn.randint(1, 10) for i in range(5)] for _ in range(1)]
 c = [a, b]
 print(c, "Генерация LIST[LIST] разной длинны", "\n")
 
@@ -226,6 +226,14 @@ print(
     "LIST разной длинны и в случайной последовательности",
     "\n",
 )
+
+# Простая генерация LIST разной длинны и в случайной последовательности
+random.seed(0)
+baf = [[rn.randint(2, 8) for _ in range(rn.randint(i, 5))] for i in range(5)]
+random.shuffle(baf)
+print(baf, "Простая генерация LIST разной длинны и  в случайной последовательности", "\n")
+
+
 
 # Замена числа в list без изменения len
 # Исходный список

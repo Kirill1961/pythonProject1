@@ -7,19 +7,19 @@ from collections import Counter
 
 """ Проверка работы доставки фа-лов из папки test """
 
-path = r"D:\downloads\SPAM Assassian\test\*"
+path = r"D:\downloads\SPAM Assassian\spam\*"
 data = [path]
 
-for fn in glob.glob(path):
-    print(fn)
+for fn in glob.glob(path):  # glob.glob(path) - доступ к файлам по указанному пути
+    # print(fn)
     is_spam = "ham" not in fn
 
     # print(is_spam)
-    with open(fn, "r") as file:
+    with open(fn, "r", encoding="latin-1") as file:
         for line in file:
             # print(line)
-            if line.startswith(("Subject")):
-                subject = re.sub(r"^Subject:", "", line).strip()
+            if line.startswith(("Subject:")):
+                subject = re.sub(r"^Subject::", "", line).strip()
                 data.append((subject, is_spam))
 print(data)
 

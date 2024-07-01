@@ -268,6 +268,17 @@ counter3 = Counter(["123"])
 print(counter1 + counter2 + counter3, "Сложение и вычитание объектов Counter", "\n")
 
 
+# Создаём объект словаря Counter() - word_count для подсчёта вхождений слов
+w_c = [('scikit learn', 1), ('pandas', 1), ('data science', 1), ('pandas', 1), ('scikit learn', 1),
+       ('data science', 1), ('scikit learn', 1), ('data science', 1)]
+word_count = Counter()  # word_count это ОБ словаря Counter(), для подсчёта вхождений слов
+for word, count in w_c:
+    print(word, count)
+    word_count[word] += count
+print(word_count, "Counter() сохраняем в переменную", "\n")
+
+
+
 # namedtuple нужен для создания структуры данных, нечто среднее между стандартными типами
 # и самописанным классом, неизменный, позволяет обращаться по имени атрибута,
 # позволяет использовать индексы.
@@ -282,4 +293,20 @@ Point = namedtuple("Point", "x y z")  # Любое количество атри
 with open("point.csv") as file:
     for line in csv.reader(file):
         point = Point._make(line)
-        print(point)
+        print(point, "\n")
+
+
+# Counter и Counter()
+b = Counter  # b - псевдоним генератора ссылается на класс
+c = Counter()  # с -  ссылается на экземпляр класса == СЛОВАРЬ
+sc = [('a', 1), ('b', 1), ('v', 1), ('x', 1), ('c', 1), ('v', 1), ('s', 1), ('d', 1), ('f', 1), ('g', 1), ('f', 1),
+      ('r', 1), ('e', 1), ('w', 1), ('f', 1), ('d', 1), ('s', 1), ('f', 1), ('g', 1), ('d', 1), ('v', 1), ('v', 1),
+      ('c', 1), ('a', 1), ('a', 1), ('a', 1)]
+s = ['a', 'b', 'v', 'x', 'c', 'v', 's', 'd', 'f', 'g', 'f', 'r', 'e', 'w',
+     'f', 'd', 's', 'f', 'g', 'd', 'v', 'v', 'c', 'a', 'a', 'a']
+print(b(s))
+print(b(s).values(), "псевдоним генератора ссылается на класс, types.GenericAlias", "\n")
+for word, count in sc:
+    c[word] += count
+print(c)
+print(c.values(), "c = Counter() -  ссылается на экземпляр класса == СЛОВАРЬ", "\n")

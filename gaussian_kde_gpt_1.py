@@ -50,6 +50,9 @@ x = [-5.5, 1.5, 2.5, 3.5, 4.1, 5]
 
 # Вычисление плотности вероятности для каждой точки
 evaluate_values = kde.evaluate(x)
+evaluate_values = kde.evaluate(x)
+evaluate_values = kde.evaluate(x)
+evaluate_values = kde.evaluate(x)
 print(evaluate_values, "evaluate_values")
 
 

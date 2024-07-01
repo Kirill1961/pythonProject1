@@ -47,7 +47,7 @@ print(adjacency_1, "adjacency_matrix - вариант Грасса + моё до
 # Количество вершин
 vertex_num = max(j for i in friendships for j in i) + 1
 
-print(vertex_num)
+print(vertex_num, "Количество вершин")
 
 # Создание матрицы смежности k - строк, v - столбцов
 adjacancy = [[0 for _ in range(vertex_num)] for _ in range(vertex_num)]
@@ -63,7 +63,7 @@ evl, evc = np.linalg.eig(adjacancy)  # evl, evc собственное числ�
 eigen_vector = [sum(i) for i in evc]
 print(adjacancy)
 print(evl, "numpy собственные  значения пользователей", "\n")
-print(evc, "numpyСобственные вектора пользователей")
+print(evc, "numpy Собственные вектора пользователей")
 
 
 # TODO begin

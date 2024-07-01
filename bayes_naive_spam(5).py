@@ -11,7 +11,7 @@ for_classifier_message = " asdf poiu poiu dfghrtyu rtyu asdfpoiu asdf asdf qwert
 
 def tokenize(message):
     message = message.lower()
-    all_words = re.findall("[a-z0-9']+", message)
+    all_words = re.findall("^[a-z0-9']+", message)
     return set(all_words)
 
 

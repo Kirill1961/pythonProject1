@@ -8,7 +8,7 @@ def roll_a_die():
     return random.choice([1, 2, 3, 4, 5, 6])
 
 
-def direct_sample():  # Прямая выборка Х и У - это вы-ка по данному закону распределения, х=d1, y=d1 + d2
+def direct_sample():  # Прямая выборка Х и У - это выборка по данному закону распределения, х=d1, y=d1 + d2
     d1 = roll_a_die()
     d2 = roll_a_die()
     return d1, d1 + d2  # PROBABILITY значений 1-го и суммы 1-го и 2-го кубиков

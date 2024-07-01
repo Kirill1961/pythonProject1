@@ -13,7 +13,6 @@ import random
 from collections import defaultdict
 import numpy as np
 import pprint
-
 # TODO begin
 
 np.random.seed(0)
@@ -38,7 +37,11 @@ B = np.array([[4, -1, 0], [10, 0, 0], [0, 0, 0]])
 
 # print(np.shape(B)[0], ">>>>")
 # Матрица D
-D = [[3, 0, 0], [0, 0, 6], [0, 8, 0]]
+D = [
+    [3, 0, 0],
+    [0, 0, 6],
+    [0, 8, 0]
+]
 
 # Разреженная матрица - sparse matrix, при больших размерах заменяем матрицу на
 
@@ -62,10 +65,7 @@ for item in sparse_representation:
 
 # Генерируем sparse_matrix, для mutate sparse_matrix в кортеж (name, (i, j), value)
 random.seed(0)
-c = [
-    [0 if random.random() < 0.8 else random.randint(1, 10) for i in range(3)]
-    for _ in range(5)
-]
+c = [[0 if random.random() < 0.8 else random.randint(1, 10) for i in range(3)] for _ in range(5)]
 print(c)
 name = "C"
 sparse_matrix = []
@@ -76,7 +76,7 @@ for i in range(len(c)):
 # pprint.pprint(sparse_matrix)
 
 # TODO param
-print(np.size(A, axis=1), " comon size")  # axis=1 - ось по строкам A
+print(np.size(A, axis=1) , " comon size")  # axis=1 - ось по строкам A
 m_1 = np.shape(A)[1]  # axis=1 - size по столбам A
 n_1 = np.shape(B)[1]  # axis=1 - size по столбам B
 m_0 = np.shape(A)[0]  # axis=0 - size по строкам A
@@ -87,7 +87,6 @@ d = m_0 - n_0  # разница между кол-вом строк А и стр
 
 print(d, "delta")
 
-
 # Разбиваем матрицы на элементы (name, (i, j), c[i][j])
 def elements_matrix(name, elems):
     matrix_elem = []
@@ -96,13 +95,9 @@ def elements_matrix(name, elems):
             for j in range(len(elem[i])):  # индексы столбов
                 # if elem[i][j] and elem[j][i] != 0:
                 if name[n] == "A":
-                    matrix_elem.append(
-                        (name[n], i, j, elem[i][j])
-                    )  # пишем в список координаты и значения для А
+                    matrix_elem.append((name[n], i, j, elem[i][j]))  # пишем в список координаты и значения для А
                 elif name[n] == "B":
-                    matrix_elem.append(
-                        (name[n], i, j, elem[i][j])
-                    )  # пишем в список координаты и значения для В
+                    matrix_elem.append((name[n], i, j, elem[i][j]))  # пишем в список координаты и значения для В
     yield matrix_elem
 
 
@@ -114,7 +109,6 @@ elements = elements_matrix(names, matrix_s)
 print(A, "\n", B, "\n")
 # TODO elem
 
-
 # Запись значений элементов в список словаря
 def matrix_multiply_mapper(m, element):
     elements_total = defaultdict(list)
@@ -122,29 +116,17 @@ def matrix_multiply_mapper(m, element):
         name, i, j, value = elem[0], elem[1], elem[2], elem[3]
         for k in range(m):  # m - общий размер
             if name == "A":
-                elements_total[j].append(
-                    A[i, k]
-                )  # первым заполняем список словаря значениями матрицы А
+                elements_total[j].append(A[i, k])  # первым заполняем список словаря значениями матрицы А
             else:
-                elements_total[i].append(
-                    B[k, j]
-                )  # вторым заполняем список словаря значениями матрицы В
+                elements_total[i].append(B[k, j])  # вторым заполняем список словаря значениями матрицы В
             for element in elements_total.values():
                 num_pairs = len(element)  # num_pairs - число для задания количества пар
-                r = [
-                    element[i : i + m] for i in range(0, num_pairs, m)
-                ]  # срезами вытаскиваем значения по 2 или более
-                pr = np.array(
-                    [
-                        sum(i * j for i, j in list(zip(i, j)))
-                        for i in r[0 : m + d]
-                        for j in r[m + d :]
-                    ]
-                )  # срезы, соединение знач. для умножения и sum
+                r = [element[i: i + m] for i in range(0, num_pairs, m)]  # срезами вытаскиваем значения по 2 или более
+                pr = np.array([sum(i * j for i, j in list(zip(i, j)))
+                               for i in r[0: m + d] for j in r[m + d:]])  # срезы, соединение знач. для умножения и sum
                 # pr = [(i, j) for i in r[0: m + d] for j in r[m + d:]]
                 # print(r)
     yield pr
-
 
 # TODO end
 element_mtrx = matrix_multiply_mapper(m_1, elements)
@@ -154,11 +136,8 @@ print(list(element_mtrx), "element_mtrx", "\n")
 print(A, "\n", B, "\n")
 
 """ reducer не понадобился тк вся обработка в matrix_multiply_mapper"""
-
-
 def matrix_multiply_reducer(m, key_indexed_value):
     pass
-
 
 reduce = matrix_multiply_reducer(m_1, element_mtrx)
 # print(list(reduce), "reduce", "\n")
