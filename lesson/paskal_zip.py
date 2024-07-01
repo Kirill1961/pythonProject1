@@ -41,31 +41,31 @@ PrintPasTriangle(5)
 
 
 """ _________________ Add Two Numbers_______________________"""
-l3 = [4, 4,  5]
-l4 = [6, 5,  4, 2, 9]
+l3 = [4, 4, 5]
+l4 = [6, 5, 4, 2, 9]
 l_min = l3 if len(l3) - len(l4) < 0 else l4
-for i in range(abs(len(l4) - len(l3)) if len(l3) - len(l4) != 0 else 0): # количество добавленных нулей
+for i in range(
+    abs(len(l4) - len(l3)) if len(l3) - len(l4) != 0 else 0
+):  # количество добавленных нулей
     l_min.append(0)
 list_one = [sum(l_o) for l_o in zip(l3, l4)]
 last_ind = len(list_one) - 1
-for ind  in range(len(list_one[0:-1])):
+for ind in range(len(list_one[0:-1])):
     if list_one[ind] >= 10:
         list_one[ind] = list_one[ind] - 10
         list_one[ind + 1] = list_one[ind + 1] + 1
-    if list_one[last_ind] >=10:
+    if list_one[last_ind] >= 10:
         val_last = list_one[last_ind] - 10
         list_one[last_ind] = val_last
         list_one.append(1)
 
 
-
-
-
-
-print(list_one,'one')
-print('last index-', last_ind, 'last value-', list_one[last_ind])
+print(list_one, "one")
+print("last index-", last_ind, "last value-", list_one[last_ind])
 print(list_one)
 
 c = [10, 20, 30, 40]
 b = [2, 2, 2, 2]
-print(list(map(lambda x_f, e_r_f:  e_r_f * x_f, c, b)), " Поиндексное действие П Р О С Т О")
+print(
+    list(map(lambda x_f, e_r_f: e_r_f * x_f, c, b)), " Поиндексное действие П Р О С Т О"
+)

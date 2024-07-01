@@ -12,16 +12,18 @@ from collections import deque
 #     'F': ['C', 'E']
 # }
 
-graph = {0: [1, 2],
-         1: [0, 2, 3],
-         2: [0, 1, 3],
-         3: [1, 2, 4],
-         4: [3, 5],
-         5: [4, 6, 7],
-         6: [5, 8],
-         7: [5, 8],
-         8: [6, 7, 9],
-         9: [8], }
+graph = {
+    0: [1, 2],
+    1: [0, 2, 3],
+    2: [0, 1, 3],
+    3: [1, 2, 4],
+    4: [3, 5],
+    5: [4, 6, 7],
+    6: [5, 8],
+    7: [5, 8],
+    8: [6, 7, 9],
+    9: [8],
+}
 
 # Создаем направленный граф
 G = nx.Graph()
@@ -36,8 +38,16 @@ for vertex, neighbors in graph.items():
 pos = nx.spring_layout(G)
 
 # Рисуем граф
-nx.draw(G, pos, with_labels=True, node_size=1000, node_color='skyblue', font_size=12, font_weight='bold')
-plt.title('Граф')
+nx.draw(
+    G,
+    pos,
+    with_labels=True,
+    node_size=1000,
+    node_color="skyblue",
+    font_size=12,
+    font_weight="bold",
+)
+plt.title("Граф")
 plt.show()
 
 
@@ -55,9 +65,13 @@ def bfs(graph, start):
         print(vertex, "vrx")  # Выводим текущую вершину
 
         for neighbor in graph[vertex]:  # Перебираем соседей текущей вершины
-            if neighbor not in visited:  # проверяем наличие  соседа в set(), определяем посещен/не посещён сосед
+            if (
+                neighbor not in visited
+            ):  # проверяем наличие  соседа в set(), определяем посещен/не посещён сосед
                 print(neighbor, "nbr")
-                visited.add(neighbor)  # если не посещён сохраняем соседа в set() и отмечаем его как посещенный
+                visited.add(
+                    neighbor
+                )  # если не посещён сохраняем соседа в set() и отмечаем его как посещенный
                 queue.append(neighbor)  # Добавляем соседа в очередь
                 print(visited, "vis")
 
@@ -74,16 +88,18 @@ def bfs(graph, start):
 # }
 
 
-graph = {0: [1, 2],
-         1: [0, 2, 3],
-         2: [0, 1, 3],
-         3: [1, 2, 4],
-         4: [3, 5],
-         5: [4, 6, 7],
-         6: [5, 8],
-         7: [5, 8],
-         8: [6, 7, 9],
-         9: [8], }
+graph = {
+    0: [1, 2],
+    1: [0, 2, 3],
+    2: [0, 1, 3],
+    3: [1, 2, 4],
+    4: [3, 5],
+    5: [4, 6, 7],
+    6: [5, 8],
+    7: [5, 8],
+    8: [6, 7, 9],
+    9: [8],
+}
 
 # Вызов функции поиска в ширину, начиная с вершины 'A'
 # bfs(graph, 'A')

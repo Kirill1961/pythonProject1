@@ -9,18 +9,20 @@ from loguru import logger
 #     logger.info("INFO INFO")
 
 
-
 logger.add("log_uru.log", format="{time} {level} {message}", level="INFO")
 logger.info("OK OK")
 logger.debug("NO")
 
 #  Декоратор, ловим исключения
 
+
 def d(a, b):
     return a / b
+
 
 @logger.catch()
 def m():
     d(1, 0)
-m()
 
+
+m()

@@ -7,55 +7,73 @@ from collections import defaultdict, Counter
 import re
 
 # TODO begin
-status_update = [{"id": 1,
-                  "username": "Kirill",
-                  "text": "Is anyone , scikit learn, pandas, data science, scikit learn, scikit learn, data_gal",
-                  "created_at": datetime.datetime(2024, 2, 2, 10, 30, 16, 416716),
-                  # "created_at": datetime.datetime.now(),
-                  "liked_by": ["scikit learn", "pandas", "data science", "pandas", "Is anyone"]
-                  },
-                 {"id": 1,
-                  "username": "Kirill",
-                  "text": "Is anyone , pandas, data_gal, data science, scikit learn",
-                  "created_at": datetime.datetime.now(),
-                  "liked_by": ["data_gay", "data_gal", "data science", "data science", "data science"]
-                  },
-                 {"id": 2,
-                  "username": "Sveta",
-                  "text": "Networkx , Gensim, data science, Gensim",
-                  "created_at": datetime.datetime.now(),
-                  "liked_by": ["Is the  anytwo"]
-                  },
-                 {"id": 3,
-                  "username": "joelgruss",
-                  "text": "Is anyone , data science, pandas ",
-                  "created_at": datetime.datetime.now(),
-                  "liked_by": ["data_gay", "data_gal", "data science", "data_gal"]
-                  },
-                 {"id": 3,
-                  "username": "joelgruss",
-                  "text": "Is anyone ,Is anyone , data science, pandas ",
-                  "created_at": datetime.datetime.now(),
-                  "liked_by": ["data_gay", "data_gal", "Is anyone", "Is anyone"]
-                  }
-                 ]
+status_update = [
+    {
+        "id": 1,
+        "username": "Kirill",
+        "text": "Is anyone , scikit learn, pandas, data science, scikit learn, scikit learn, data_gal",
+        "created_at": datetime.datetime(2024, 2, 2, 10, 30, 16, 416716),
+        # "created_at": datetime.datetime.now(),
+        "liked_by": ["scikit learn", "pandas", "data science", "pandas", "Is anyone"],
+    },
+    {
+        "id": 1,
+        "username": "Kirill",
+        "text": "Is anyone , pandas, data_gal, data science, scikit learn",
+        "created_at": datetime.datetime.now(),
+        "liked_by": [
+            "data_gay",
+            "data_gal",
+            "data science",
+            "data science",
+            "data science",
+        ],
+    },
+    {
+        "id": 2,
+        "username": "Sveta",
+        "text": "Networkx , Gensim, data science, Gensim",
+        "created_at": datetime.datetime.now(),
+        "liked_by": ["Is the  anytwo"],
+    },
+    {
+        "id": 3,
+        "username": "joelgruss",
+        "text": "Is anyone , data science, pandas ",
+        "created_at": datetime.datetime.now(),
+        "liked_by": ["data_gay", "data_gal", "data science", "data_gal"],
+    },
+    {
+        "id": 3,
+        "username": "joelgruss",
+        "text": "Is anyone ,Is anyone , data science, pandas ",
+        "created_at": datetime.datetime.now(),
+        "liked_by": ["data_gay", "data_gal", "Is anyone", "Is anyone"],
+    },
+]
 # Класс datetime
 time_now = datetime.datetime.now()  # time Moscow
-time_now_timezone = datetime.datetime.now(datetime.timezone.utc)  # время GMT, нулевой меридиан
+time_now_timezone = datetime.datetime.now(
+    datetime.timezone.utc
+)  # время GMT, нулевой меридиан
 set_timezone_hours = datetime.timezone(datetime.timedelta(hours=+3))  # UTC/GMT + 3ч
-time_now_timezone_hours = datetime.datetime.now(set_timezone_hours)  # заданное время относительно UTC
+time_now_timezone_hours = datetime.datetime.now(
+    set_timezone_hours
+)  # заданное время относительно UTC
 
 print(time_now, "time Moscow")
 print(time_now_timezone, "время GMT, нулевой меридиан")
 print(time_now_timezone_hours, "заданное время относительно UTC", "\n")
 print(status_update, "\n")
-print(time_now.weekday(), "weekday", "\n")  # weekday() - возвращает день недели для указанной даты.
+print(
+    time_now.weekday(), "weekday", "\n"
+)  # weekday() - возвращает день недели для указанной даты.
 
-print("Год:", status_update[0]["created_at"].year, " ", end='@')
-print("Месяц:", status_update[0]["created_at"].month, " ", end='@')
-print("День:", status_update[0]["created_at"].day, end='@')
-print("Часы:", status_update[0]["created_at"].hour, end='@')
-print("Минуты:", status_update[0]["created_at"].minute, end='@')
+print("Год:", status_update[0]["created_at"].year, " ", end="@")
+print("Месяц:", status_update[0]["created_at"].month, " ", end="@")
+print("День:", status_update[0]["created_at"].day, end="@")
+print("Часы:", status_update[0]["created_at"].hour, end="@")
+print("Минуты:", status_update[0]["created_at"].minute, end="@")
 print("Секунды:", status_update[0]["created_at"].second)
 
 
@@ -64,7 +82,9 @@ def data_scince_day_mapper(status_update):
     for status_update_day in status_update:
         # yield status_update_day["text"]
         if "data science" in status_update_day["text"].lower():
-            day_of_week = status_update_day["created_at"].weekday()  # weekday() - возвращает указанные дни недели
+            day_of_week = status_update_day[
+                "created_at"
+            ].weekday()  # weekday() - возвращает указанные дни недели
             yield day_of_week, 1
         else:
             day_of_week = status_update_day["created_at"].weekday()
@@ -72,6 +92,7 @@ def data_scince_day_mapper(status_update):
 
 
 # print(list(data_scince_day_mapper(status_update)), "tutorial:[(a, b)] a - день недели, b - число упоминаний слова ")
+
 
 # редуктор
 def sum_reduce(day_collect):
@@ -134,6 +155,7 @@ def word_per_user_mapper(stat_update):
 
 # TODO mid
 
+
 # Кол-во повторов слов для каждого user,
 # defaultdict(int) считает повторы; defaultdict(dict)- update словарь с подсчётом {words:counts} к ключу users
 def most_popular_word_reducer(words_and_counts):
@@ -141,8 +163,10 @@ def most_popular_word_reducer(words_and_counts):
     res_user_word_coun = defaultdict(dict)
     for user, (word, count) in words_and_counts:
         word_count[user, word] += count
-        [(res_user_word_coun[users].update({words: counts})) for (users, words), counts in
-         word_count.items()]  # изюменка
+        [
+            (res_user_word_coun[users].update({words: counts}))
+            for (users, words), counts in word_count.items()
+        ]  # изюменка
     # yield res_user_word_coun  # возврат генератора если вызываем напрямую most_popular_word_reducer()
     return res_user_word_coun  # простой возврат результата если используем обобщающую ф-цию mapp_reduce()
 
@@ -166,25 +190,34 @@ print(list(words_users), "MapReducer - сообщений всех юзеров 
 def liker_mapper(input):
     liker_count = defaultdict(int)
     liker_of_user = defaultdict(dict)
-    wc = [(i['username'], i['liked_by']) for i in input]
+    wc = [(i["username"], i["liked_by"]) for i in input]
     for user, liker in wc:
         for word in liker:
             words, counts = word, 1
             liker_count[user, words] += counts
             # liker_of_user[user].update(liker_count)
-        for (user, words), counts in liker_count.items():  # крутим items(), перегруппировываем user, words, counts
-            liker_of_user[user].update({words: counts})  # подсчитанные liker записываем в value liker_of_user
-    return (liker_of_user)  # возврат для вызова через map_reducer()
+        for (
+            user,
+            words,
+        ), counts in (
+            liker_count.items()
+        ):  # крутим items(), перегруппировываем user, words, counts
+            liker_of_user[user].update(
+                {words: counts}
+            )  # подсчитанные liker записываем в value liker_of_user
+    return liker_of_user  # возврат для вызова через map_reducer()
     # yield (liker_of_user) # генератор прямого вызова liker_mapper()
 
 
 # print(list(liker_mapper(status_update)), "прямой вызов")
 # TODO end
 
+
 #  Для каждого пользователя число пользователей которым нравится новостная лента данного user
 def count_distinct_reducer(like_map):
     lm = [i for i in like_map]
     return lm
+
 
 #  коллектор для count_distinct_reducer
 def map_reducer(in_put, mapper, reducer):
@@ -193,16 +226,24 @@ def map_reducer(in_put, mapper, reducer):
     liker_reduce = defaultdict(int)
     for user in count_distinct_reducer(like_map):
         for other_user in like_map:
-            if user != other_user:  # условие исключающее учёт собственного лайка данного пользователя
-                if set(like_map[user].keys()).issubset(set(like_map[other_user].keys()))\
-                        or set(like_map[user].keys()).issuperset(set(like_map[other_user].keys())):  # учёт лайков users
+            if (
+                user != other_user
+            ):  # условие исключающее учёт собственного лайка данного пользователя
+                if set(like_map[user].keys()).issubset(
+                    set(like_map[other_user].keys())
+                ) or set(like_map[user].keys()).issuperset(
+                    set(like_map[other_user].keys())
+                ):  # учёт лайков users
                     liker_reduce[user] += 1
                 else:
                     liker_reduce[user] += 0
 
-
     yield liker_reduce
 
 
-distinct_licers_per_user = map_reducer(status_update, liker_mapper, count_distinct_reducer)
-print(list(distinct_licers_per_user), "Число пльзователей лайкнувших данного пользователя")
+distinct_licers_per_user = map_reducer(
+    status_update, liker_mapper, count_distinct_reducer
+)
+print(
+    list(distinct_licers_per_user), "Число пльзователей лайкнувших данного пользователя"
+)

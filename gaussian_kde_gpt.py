@@ -14,7 +14,17 @@ data = np.random.normal(loc=0, scale=1, size=100)
 kde = gaussian_kde(data)
 # kde_str = repr(kde)
 # print(kde_str)
-x = [0, 0.00001, 0.05,  0.1, 0.2, 0.3, 0.4, 0.5, 10]  # 10 - выброс который увеличивает std
+x = [
+    0,
+    0.00001,
+    0.05,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    10,
+]  # 10 - выброс который увеличивает std
 print("PDF", kde.pdf(x))  # плотность вероятности в точке Х из данной выборки
 print("Размер выборки:", kde.n)
 print("Фактор сглаживания (bandwidth):", kde.factor)  # Ширина ядра
@@ -24,11 +34,13 @@ x = np.linspace(min(data), max(data), 100)
 density = kde(x)
 # print(density)
 # Строим график плотности распределения
-plt.plot(x, density, label='KDE')
-plt.hist(data, bins=30, density=True, alpha=0.5, label='Histogram')  # Добавляем гистограмму для сравнения
-plt.xlabel('Значение')
-plt.ylabel('Плотность')
-plt.title('Плотность распределения выборки')
+plt.plot(x, density, label="KDE")
+plt.hist(
+    data, bins=30, density=True, alpha=0.5, label="Histogram"
+)  # Добавляем гистограмму для сравнения
+plt.xlabel("Значение")
+plt.ylabel("Плотность")
+plt.title("Плотность распределения выборки")
 plt.legend()
 plt.show()
 
@@ -50,4 +62,3 @@ pdf_values = kde.pdf(x_values)
 
 # Выводим значения PDF на печать
 print(pdf_values)
-

@@ -1,13 +1,13 @@
 from turtle import distance, getscreen
 import turtle
+
 t = turtle.Pen()
 import turtle as t
 from random import random
 
 
-
 a = distance(5, 6)
-print(a, ' distance a')
+print(a, " distance a")
 
 
 # t.forward(100)
@@ -18,7 +18,7 @@ print(a, ' distance a')
 # t.left(90)
 # t.forward(100)
 # t.up()
-t.goto(100,50)
+t.goto(100, 50)
 # t.left(90)
 
 t.setx(200)

@@ -6,19 +6,20 @@
             в том случае, если ожидается, что часть кода приведет к исключению).
     Finally: вне зависимости от того, будет ли исключение или нет,
             этот блок кода исполняется всегда."""
+
 """ Имитация ошибки NameError  """
 
-with open('my_txt.txt', 'w') as _flow:
-    print('ok ok ok', file=_flow)
-with open('my_txt.txt') as _flow:
+with open("my_txt.txt", "w") as _flow:
+    print("ok ok ok", file=_flow)
+with open("my_txt.txt") as _flow:
     try:
         for i in _flo:
             print(i, " _flo _flo _flo")
     except:
-        print('NameError change _flo on _flow ')
-my_try = open('vsearch.txt', 'w')
-my_try.write('All right')
-my_try = open('vsearch.txt')
+        print("NameError change _flo on _flow ")
+my_try = open("vsearch.txt", "w")
+my_try.write("All right")
+my_try = open("vsearch.txt")
 read_mt = my_try.read()
 my_try.close()
 print(read_mt)
@@ -28,29 +29,29 @@ print(read_mt)
 где err это переменная в которую будет вносится тип ошибки 
 из класса Exception  """
 
-with open('my_t.txt', 'a') as _fl:
-    file_my_txt = _fl.write('no no no')
+with open("my_t.txt", "a") as _fl:
+    file_my_txt = _fl.write("no no no")
 try:
-    with open('my_t.txt') as _f:
+    with open("my_t.txt") as _f:
         my_txt = _fl.read()
         # a = int(input())
         # print(my_txt) if a == 123 else print('Is unable call')
         print((my_txt))
 except Exception as err:
-    print(' ValueError change _f on _fl', str(err), " >>>>>>>>>>>>>>>>>>>>>>")
+    print(" ValueError change _f on _fl", str(err), " >>>>>>>>>>>>>>>>>>>>>>")
 
 """ Имитация ошибки 'open('C:')' для получения ошибки
  PermissionError"""
 
-with open('my_ttxt', 'w') as __fl:
+with open("my_ttxt", "w") as __fl:
     # print('ez ez ez', file=__fl)
-    __fl.write('ye ye ye ')
+    __fl.write("ye ye ye ")
 try:
-    with open('C:') as __fl:
+    with open("C:") as __fl:
         txt_f = __fl.read()
         print(txt_f, ">>>>>>>>>>")
 except PermissionError:
-    print('Permissionerror change C: on my_ttxt ')
+    print("Permissionerror change C: on my_ttxt ")
 # demof =  open('demo.txt', 'r')
 # getcontentoffile = demof.read()
 # print(getcontentoffile)
@@ -76,7 +77,7 @@ division by zero
 
 
 # Читаем из txt и обрабатываем строки в своей директории
-with open('file.txt') as f:
+with open("file.txt") as f:
     while line := f.readline():
         print(f"Прочитана строка: {line.strip()}")
 
@@ -102,7 +103,11 @@ if (m := len(numbers)) > 0:
 
 # warlus - это действие с действием
 lista = [2, 5, 8, 9, 12]
+
+
 def foo(b):
     (w := list(filter(lambda x: x % 2 == 0, b))).append(55)
     return w
+
+
 print(foo(lista), "warlus - это действие с действием")

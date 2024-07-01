@@ -5,7 +5,6 @@ from collections import Counter
 # path = r"D:\downloads\SPAM Assassian\ee_k.txt"
 
 
-
 """ Проверка работы доставки фа-лов из папки test """
 
 path = r"D:\downloads\SPAM Assassian\test\*"
@@ -23,11 +22,6 @@ for fn in glob.glob(path):
                 subject = re.sub(r"^Subject:", "", line).strip()
                 data.append((subject, is_spam))
 print(data)
-
-
-
-
-
 
 
 # def split_data(data, prob):

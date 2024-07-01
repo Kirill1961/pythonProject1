@@ -1,12 +1,12 @@
-vowels = ['a', 'e', 'i', 'o', 'u']
-word = 'Provide a word to search for vowels:'
+vowels = ["a", "e", "i", "o", "u"]
+word = "Provide a word to search for vowels:"
 # word=input('Provide a word to search for vowels:')
 found = {}
-found['a'] = 0
-found['e'] = 0
-found['i'] = 0
-found['o'] = 0
-found['u'] = 0
+found["a"] = 0
+found["e"] = 0
+found["i"] = 0
+found["o"] = 0
+found["u"] = 0
 
 for letter in word:
     if letter in vowels:
@@ -14,15 +14,15 @@ for letter in word:
 for k, v in sorted(found.items()):
     print(k, v)
 gg = {}
-gg[1] = 'flkhjlllpp'  # инициализация ключа  1
-gg[2] = 'poiuytre'  # инициализация ключа 2
+gg[1] = "flkhjlllpp"  # инициализация ключа  1
+gg[2] = "poiuytre"  # инициализация ключа 2
 print(gg[1], gg[2])  # вывод значений из словаря gg с помощью ключей
-print('////////////')
+print("////////////")
 print(2 in gg)  # in - наличие в словаре gg ключа с именем 2
 print(gg)
 
 """ Вырезаем указанный ключ с помощью .pop () удаляет ключ и возвращает значение"""
-ftg = {1: 'pop', 2: 'bob', 3: 'mop'}
+ftg = {1: "pop", 2: "bob", 3: "mop"}
 print(ftg.pop(2, []))
 print(ftg)
 
@@ -36,7 +36,12 @@ print(ftg)
  Новый пустой словарь можно заполнить с помощью цикла извлекая с items() key и  value
     c последующей инициализацией перебираемых k и v """
 # dict_for_iter2 = {}
-dict_for_iter = {'j': 14, 'a': 1, 'b': 5, 'f': 3, }
+dict_for_iter = {
+    "j": 14,
+    "a": 1,
+    "b": 5,
+    "f": 3,
+}
 dict_for_iter2 = {}
 for k_d, v_d in dict_for_iter.items():
     dict_for_iter2[k_d] = v_d
@@ -58,20 +63,36 @@ print(list_key)
 
 """Список СЛОВАРЕЙ , добавим в  каждый dict из списка кортежей frdsh новое свойство с ключом 'frds'.
     из datasience пример с сотрудниками"""
-frdsh = [(0, 1), (2, 1), (0, 2), (0, 3)]  # создаём друж / связи сотрудников по индексам из списка usrs
-usrs = usrs = [{'id': 0, 'name': 'aa'}, {'id': 1, 'name': 'bb'}, {'id': 2, 'name': 'cc'}, {'id': 3, 'name': 'dd'}]
+frdsh = [
+    (0, 1),
+    (2, 1),
+    (0, 2),
+    (0, 3),
+]  # создаём друж / связи сотрудников по индексам из списка usrs
+usrs = usrs = [
+    {"id": 0, "name": "aa"},
+    {"id": 1, "name": "bb"},
+    {"id": 2, "name": "cc"},
+    {"id": 3, "name": "dd"},
+]
 
 for us in usrs:  # перебрав список usrs через переменную us получим словари из users
-    us['frds'] = []  # вставим в каждый словарь ключ 'frds' и назначим ему в качестве value - пустой список
+    us["frds"] = (
+        []
+    )  # вставим в каждый словарь ключ 'frds' и назначим ему в качестве value - пустой список
 for i, j in frdsh:  # перебираем кортежи из frdsh
     #     frds = [usrs[i],usrs[j]]
 
-    usrs[i]['frds'].append(j)  # usrs[i] - выбираем ОБ  по индексу из списка usrs, тк выбранный ОБ - словарь, а ['frds']
-    usrs[j]['frds'].append(i)  # это ключ с value в виде пустого списка, то можно вставить  значение append(i) или (j)
+    usrs[i]["frds"].append(
+        j
+    )  # usrs[i] - выбираем ОБ  по индексу из списка usrs, тк выбранный ОБ - словарь, а ['frds']
+    usrs[j]["frds"].append(
+        i
+    )  # это ключ с value в виде пустого списка, то можно вставить  значение append(i) или (j)
 print(usrs)
 
 # Замена просто value на список из value
-d = {30 : 33, 10 : 11, 20 : 22}
+d = {30: 33, 10: 11, 20: 22}
 dc = {k: [i] for k, i in d.items()}
 print((dc, " Замена просто value на список из value"))
 
@@ -88,6 +109,6 @@ print(d.get(31, "Kirill"), " - Второй аргумент это возвра
 my_dict = {}  # Создание пустого словаря
 
 # Добавление нескольких ключей и значений
-my_dict.update({'key1': 'value1', 'key2': 'value2'})
+my_dict.update({"key1": "value1", "key2": "value2"})
 
 print(my_dict, "update - добавление в словарь нескольких ключей и значений")

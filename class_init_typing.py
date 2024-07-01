@@ -1,32 +1,33 @@
 class Cat:
-    """ внутри метода __init__ через self можно задать начальные значения 
+    """внутри метода __init__ через self можно задать начальные значения
     атрибутов экземпляра. Аргументам метода __init__ можно присваивать  сразу значения ,
     если не присвоено как "nm" , то надо указывать значения в виде аргументов
       при создании объекта, метод __init__ производит инициализацию те заполнение
-      наших объектов какими либо значениями тк значения аргументов хранятся в __init__"""
+      наших объектов какими либо значениями тк значения аргументов хранятся в __init__
+    """
 
     #     def __init__(self, nm,  ag, cl ): #| <--- способ создания объекта, имя класса Cat со
     #         print('Ok',self, nm,  ag, cl) #| значениями для метода __init__, сам объект сохраняется
     # Cat('Joe', 10, 'Wite')                #|в переменной self знач подставляются и выводится ОБ + значения:
     #                                       #| Ok <__main__.Cat object at 0x00000145B6328810> Joe 10 Wite
 
-    def __init__(self, nm, ag=80, cl='Bl'):
+    def __init__(self, nm, ag=80, cl="Bl"):
         self.name = nm
         self.age = ag
         self.color = cl
 
-    def s_v(self, nm, ag=10, cl='black'):
+    def s_v(self, nm, ag=10, cl="black"):
         self.name = nm
         self.age = ag
         self.color = cl
 
 
-bob = Cat('Bobik')  # экземпляр(объект) bob
-bob.s_v('Bob')  # объекту bob добавили сво-ва из метода s_v
-# Cat()         
-Tom = Cat('Tom', ag=50)
+bob = Cat("Bobik")  # экземпляр(объект) bob
+bob.s_v("Bob")  # объекту bob добавили сво-ва из метода s_v
+# Cat()
+Tom = Cat("Tom", ag=50)
 
-bim = Cat('Lisa')
+bim = Cat("Lisa")
 
 """ метод __dict__ показывет содержание объекта"""
 
@@ -55,30 +56,30 @@ print(bim.__dict__)
 #     def increase(self):
 
 #         self.zic =  self.zic * 2
-#         self.incr = self.incr * 2 
-#         self.vincr = self.vincr * 2  
+#         self.incr = self.incr * 2
+#         self.vincr = self.vincr * 2
 #         print(self.vincr, self.incr, self.zic )
-# a = CoFr(100,33,2)  
-# b = CoFr(2,5,100)  
+# a = CoFr(100,33,2)
+# b = CoFr(2,5,100)
 # b.increase()
 # a.increase()
 
 
 # class ProbClass:
-#     # xx = 0 
+#     # xx = 0
 #     def __init__(self, incr : int = 0, arg_object : int = 1, step = 0) :
-#         self.incr = incr 
+#         self.incr = incr
 #         self.arg_object = arg_object
-#         self.step = step      
-#     def increase(self):       
-#         if self.step == 0:    
-#             self.incr += 1 + self.arg_object  + self.step  - 1 
+#         self.step = step
+#     def increase(self):
+#         if self.step == 0:
+#             self.incr += 1 + self.arg_object  + self.step  - 1
 #         else:
 #             self.incr += 1 + self.step  - 1
 #         print (self.incr)
 #     def __repr__(self) -> str:
-#         return(f'{self.incr}')    
-#         # ProbClass.xx += 1 
+#         return(f'{self.incr}')
+#         # ProbClass.xx += 1
 #         # print('\t'*2,ProbClass.xx)
 
 
@@ -108,16 +109,17 @@ print(bim.__dict__)
 #         self.vv = vv
 #         self.ii = ii
 #     def innc(self ):
-#         self.vv += self.ii 
+#         self.vv += self.ii
 #         # print(self.vv)
 #     def __repr__(self) -> str:
 #         return str(self.vv)
 # avv = Cf(100,10)
-# print(avv)    
 # print(avv)
-# print(avv)   
+# print(avv)
+# print(avv)
 # for k in range(3):
 #     print(avv)
+
 
 # print(13%2)
 class try_self:
@@ -141,7 +143,10 @@ class Sol:
     def __init__(self, f, g):
         self.f = f
         self.g = g
-        print(f, g, )
+        print(
+            f,
+            g,
+        )
 
     def twoS(self, f, g):
         self.f = f
@@ -190,9 +195,10 @@ print(ans.twoSum(nums, 3))
 
 
 class dog:
-    spiteful = 'spiteful '
-    kind =' kind'
-    def __init__(self, name='dog', sandy_age=None, dan_age=1, breed=' dnt know'):
+    spiteful = "spiteful "
+    kind = " kind"
+
+    def __init__(self, name="dog", sandy_age=None, dan_age=1, breed=" dnt know"):
         self.name = name
         # self.age = age
         self.breed = breed
@@ -202,20 +208,20 @@ class dog:
     def larges_age(self, dan_age, sandy_age):
         # self.dan_age = dan_age
         # self.sandy_age = sandy_age
-        print(Sandy.sandy_age, '>>>>>>>>>>>>>>>>>>>>>>>>>>')
-        hwo_older = 'Dan' if dan_age - sandy_age > 0 else 'Sandy'
+        print(Sandy.sandy_age, ">>>>>>>>>>>>>>>>>>>>>>>>>>")
+        hwo_older = "Dan" if dan_age - sandy_age > 0 else "Sandy"
         return hwo_older
 
 
 """ В ОБ именованные аргументы если их поменять местами то в __init__ то же надо менять местами арг, иначе 
     может не совпасть тип аргументов str или int"""
 
-Sandy = dog('Sandy', 5)
-Dan = dog('Dan', dan_age=8)
-print(Sandy.__dict__, 'Sandy.__dict__')
+Sandy = dog("Sandy", 5)
+Dan = dog("Dan", dan_age=8)
+print(Sandy.__dict__, "Sandy.__dict__")
 print(Dan.__dict__)
 print(dog.__dict__)
-print(Sandy.sandy_age, Dan.dan_age, 'age age age')
+print(Sandy.sandy_age, Dan.dan_age, "age age age")
 print(Dan.larges_age(Dan.dan_age, Sandy.sandy_age))
 print(Sandy.spiteful)
 """ Вариант записи экземпляра с аргументами через метод и класс - dog.larges_age(Dan, dan_age=10, sandy_age=5)  """

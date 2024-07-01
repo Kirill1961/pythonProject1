@@ -1,4 +1,3 @@
-
 from functools import reduce
 from collections import defaultdict, Counter
 import random as rn
@@ -12,11 +11,12 @@ for_classifier_message = " asdf poiu poiu dfghrtyu rtyu asdfpoiu asdf asdf qwert
 # input_value = [['a', 'b', 'c', 'w', 's'], ['d', 'b', 'k'], ['a', 'c', 'k'], ['a', 'd', 'f']]
 
 
-input_value = [['statistic', 'R', 'go', 'scipy', 'numpy', 'MongoDB', 'pandas', 'data science'],
-               ['MongoDB', 'data science', 'Spark', 'Postgres', 'pandas', 'NoSQL','Big Data'],
-               ['Storm', 'Java', 'pandas', 'MongoDB', 'data science', 'pandas', 'data science'],
-               ['statistic', 'R', 'go', 'scipy', 'numpy', 'MongoDB', 'pandas', 'data science']
-               ]
+input_value = [
+    ["statistic", "R", "go", "scipy", "numpy", "MongoDB", "pandas", "data science"],
+    ["MongoDB", "data science", "Spark", "Postgres", "pandas", "NoSQL", "Big Data"],
+    ["Storm", "Java", "pandas", "MongoDB", "data science", "pandas", "data science"],
+    ["statistic", "R", "go", "scipy", "numpy", "MongoDB", "pandas", "data science"],
+]
 
 
 # Токенайзер для стандартного подсчёта слов
@@ -28,10 +28,6 @@ def tokenize(messages):
         all_words = re.findall("[a-z0-9']+", message)
         # print(all_words)
         yield tuple(all_words)
-
-
-
-
 
 
 # стандартный подсчёт частоты слов с Counter
@@ -57,6 +53,7 @@ def wc_mapper(document):
 # t = Counter(list(wc_reducer(wc_mapper(input_value))))
 # print(t)
 
+
 def wc_reducer(word, counts):
     # print(word, counts)
     yield word[0], counts
@@ -79,14 +76,17 @@ mapp = lambda x: [(i, j) for i in x for j in [x.index(i)]]  # для прост�
 rdsr = lambda y, x: (y, Counter(x))
 
 
-def map_reduce(inputs, mapper, reducer):  # mapper / reducer - выбранные / с суммированные слова
+def map_reduce(
+    inputs, mapper, reducer
+):  # mapper / reducer - выбранные / с суммированные слова
     collector = defaultdict(list)
     for input in inputs:
         for key, value in mapper(input):
             collector[key].append(value)
     # print([(key, sum(values)) for key, values in collector.items()])
-    return [output for key, values in collector.items()
-            for output in reducer(key, values)]
+    return [
+        output for key, values in collector.items() for output in reducer(key, values)
+    ]
 
 
 # pprint.pprint(map_reduce(input_value, mapp, rdsr))
@@ -121,11 +121,10 @@ print(list(sum_reducer), "sum_reducer")
 print(list(count_distinc_redeucer), "count_distinc_redeucer ")
 
 
-
 def tokenize_word(words):
     for word in words:
-        word_pattern = r'\b(?:' + '|'.join(word) + r')\b'
+        word_pattern = r"\b(?:" + "|".join(word) + r")\b"
         print(word_pattern, "word_pattern")
+
+
 tokenize_word(input_value)
-
-

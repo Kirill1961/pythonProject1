@@ -7,6 +7,7 @@
 Вывод 333 выполняется первым тк в глобальной зоне.
 222 с задержкой на n секунд хотя очередь исполнения раньше
 чем 333 тк находится в теле ф-ции threa_d"""
+
 import requests
 from threading import Thread
 from time import sleep
@@ -15,28 +16,33 @@ from time import sleep
 отформатированный в str объект, точка "." соединяет строку 
 куда закидывает ф-я format строчный объект
 print(f'333,{12}') ещё вариант форматирования в str"""
+
+
 def threa_d(n, name):
-    print('{} 111.'.format(name), end=' ')
+    print("{} 111.".format(name), end=" ")
     sleep(n)
-    print('{} 222'.format(name))
+    print("{} 222".format(name))
+
 
 """ создаём объект класса Thread, именуем "t", два обязательных аргумента:
 target - имя объекта функции без скобок и args - аргументы ф-ции threa_d
 для запуска в паралели используем ф-ю start()"""
-t = Thread(target=threa_d, args=(3, 'Cirill'))
+t = Thread(target=threa_d, args=(3, "Cirill"))
 t.start()
-print('Cirill {} '.format(333))
+print("Cirill {} ".format(333))
 
 
-urls = ('http://twitter.com', 'http://headfirstlabs.com', 'https://www.oreilly.com/')
+urls = ("http://twitter.com", "http://headfirstlabs.com", "https://www.oreilly.com/")
+
 
 def gen_req_ex(urls):
 
-    print('Cirill - is a good programmer ?')
+    print("Cirill - is a good programmer ?")
     sleep(2)
     for resp in (requests.get(url) for url in urls):
         print(len(resp.content), resp.status_code, resp.url)
-    print('Cirill good programmer')
+    print("Cirill good programmer")
+
 
 """ Помещаем ф-цию gen_req_ex(urls) в экземпляр " t " класса Thread, 
     тем самым размещаем в паралельном потоке с запросом  requests.get
@@ -46,5 +52,5 @@ def gen_req_ex(urls):
 time = Thread(target=gen_req_ex, args=[urls])
 time.start()
 
-resp = requests.get('http://headfirstlabs.com')
-print(resp.status_code,'END CODE', '****')
+resp = requests.get("http://headfirstlabs.com")
+print(resp.status_code, "END CODE", "****")

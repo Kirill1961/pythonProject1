@@ -6,9 +6,8 @@ import random
 import pprint
 
 
-
 def fix_unicode(text):
-    return text.replace(u"\u2019", "'")  # изменение кодировки
+    return text.replace("\u2019", "'")  # изменение кодировки
 
 
 # url = "http://radar.oreilly.com/2010/06/what-is-data-science.html"  # сохраняем сайт в переменную
@@ -86,10 +85,12 @@ def fix_unicode(text):
 
 
 def exempl(x):
-    with open(x, 'r') as f:
+    with open(x, "r") as f:
         contents = f.read()
-        soup = BeautifulSoup(contents, 'lxml')
-        s = soup.findAll("p")  # тк find извлекает 1-е совпадение, применяем findAll для извл. всех совпадений
+        soup = BeautifulSoup(contents, "lxml")
+        s = soup.findAll(
+            "p"
+        )  # тк find извлекает 1-е совпадение, применяем findAll для извл. всех совпадений
         # print(soup.h2)
         # print(soup.head)
         # print(soup.li)
@@ -102,8 +103,10 @@ def exempl(x):
 
 """ получение  data из сайта deltaks"""
 
-HEADERS = {"Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-           "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0"}
+HEADERS = {
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0",
+}
 HOST = "https://deltaks.ru/"  # вытащить можно только data из url передано в BS, HOST всегда оканчивается "/"
 
 URL_ABOUT = "https://deltaks.ru/Shop/About/"  # url для EX сведений о компании
@@ -113,9 +116,12 @@ URL_ARTIKLE = "https://deltaks.ru/Shop/Article"  # url для extract(ЕХ) ст
 
 # TODO ask
 def ask_soup(url, params=" "):  # передали сайт в аргумент
-    html = requests.get(url, headers=HEADERS,
-                        params=params)  # requests.get - запрос сайта по адресу из переменной url, text - запрос текста
-    soup = BeautifulSoup(html.text, 'html.parser')  # soup - ЭКЗ класса BS, 'lxml' - парсер которым будем пользоваться
+    html = requests.get(
+        url, headers=HEADERS, params=params
+    )  # requests.get - запрос сайта по адресу из переменной url, text - запрос текста
+    soup = BeautifulSoup(
+        html.text, "html.parser"
+    )  # soup - ЭКЗ класса BS, 'lxml' - парсер которым будем пользоваться
 
     # print("HTML: {0}, name:{1}, text: {2}".format(soup.div, soup.div.name, soup.div.text), "\n")  # вывод тега и его содержимого
 
@@ -174,7 +180,6 @@ def ask_soup(url, params=" "):  # передали сайт в аргумент
 
         cards.append(
             {
-
                 "title": content.find("img").get("title"),
                 "url": HOST + content.find("a").get("href"),
                 "image": HOST + content.find("img").get("src"),
@@ -183,9 +188,11 @@ def ask_soup(url, params=" "):  # передали сайт в аргумент
 
         # content_1 = soup.find("div")
 
-    print (cards)
+    print(cards)
     # print("HTML: {0}, name:{1}, text: {2}".format(soup.h1, soup.h1.name, soup.h1.text))
     return html, soup
+
+
 def parser(url):
     html, soup = ask_soup(HOST)
     if html.status_code == 200:
@@ -194,6 +201,8 @@ def parser(url):
         print("Error")
 
     return html.text
+
+
 parser(HOST)
 # TODO end
 

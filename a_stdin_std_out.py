@@ -37,28 +37,26 @@ from collections import Counter
 #         print('Message from sys.stdin: ---> {} <---'.format(line))# это печать если не встречается в line - 'exit'
 
 
-
-
 """ Наиболее распространёные слова :: most_common_words.py"""
 """ Вывод из кода в консоль можно через sys.stdout,
     Передать текст из консоли в пайтон-код можно через sys.stdin"""
 
-''' Конвеерная передача - type eek.txt | py.exe .\a_stdin_std_out.py 4'''
+""" Конвеерная передача - type eek.txt | py.exe .\a_stdin_std_out.py 4"""
 
 # type eek.txt | python egrep.py'[0-9' | python line_count.py
 try:
-    num_words = int(sys.argv[1]) # Вводим число самых частых слов
+    num_words = int(sys.argv[1])  # Вводим число самых частых слов
 except:
-    print(' Применение : most_common_words.py nu_words')
+    print(" Применение : most_common_words.py nu_words")
     sys.exit(1)
-counter = Counter(word.lower() for line in sys.stdin
-                  for word in line.strip().split() if word) # через sys.stdin из консоли передаём текст в счётчик
+counter = Counter(
+    word.lower() for line in sys.stdin for word in line.strip().split() if word
+)  # через sys.stdin из консоли передаём текст в счётчик
 
-for word, count in counter.most_common(num_words): #  через sys.stdout выводим в консоль most_common_words
+for word, count in counter.most_common(
+    num_words
+):  #  через sys.stdout выводим в консоль most_common_words
     sys.stdout.write(str(count))
-    sys.stdout.write('\t')
+    sys.stdout.write("\t")
     sys.stdout.write(word)
-    sys.stdout.write('\n')
-
-
-
+    sys.stdout.write("\n")

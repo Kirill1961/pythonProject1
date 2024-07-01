@@ -5,6 +5,7 @@ from time import sleep
 from typing import List
 
 import requests
+
 #
 #
 # def outer(fu_nc):
@@ -128,7 +129,7 @@ class Solution:
 
 
 ans = Solution(nums, 5)
-print(ans.twoSum(nums, 1), 'qqqqqqqqqqqqqq')
+print(ans.twoSum(nums, 1), "qqqqqqqqqqqqqq")
 
 
 """ даны два непустого списка, представляющих два неотрицательных целых числа,
@@ -145,9 +146,12 @@ l4 = [6, 5, 4, 2, 9]
 # num_el = abs(d) if d != 0 else 0
 # print(num_el, '++')
 l_min = l3 if len(l3) - len(l4) < 0 else l4
-print((abs(len(l4) - len(l3)) if len(l3) - len(l4) != 0 else 0), 'null')
+print((abs(len(l4) - len(l3)) if len(l3) - len(l4) != 0 else 0), "null")
 
-X = [l_min.append(0) for i in range(abs(len(l4) - len(l3)) if len(l3) - len(l4) != 0 else 0)]
+X = [
+    l_min.append(0)
+    for i in range(abs(len(l4) - len(l3)) if len(l3) - len(l4) != 0 else 0)
+]
 
 list_one = [sum(l_o) for l_o in zip(l3, l4)]
 last_ind = len(list_one) - 1
@@ -163,7 +167,7 @@ for ind in range(len(list_one[0:-1])):
 print(list_one)
 
 
-class two_Numbers():
+class two_Numbers:
     def __init__(self, nums=[5, 6, 4, 2, 9], target=4):
         # self.l3 = l3
         # self.l4 = l4
@@ -197,21 +201,26 @@ class two_Numbers():
     def nums_targ(self, nums, target):
         self.nums = nums
         self.target = target
-        for i in [(nums.index(n), nums.index(m)) for n in nums for m in nums[0:] if target == n - m or target == m + n]:
+        for i in [
+            (nums.index(n), nums.index(m))
+            for n in nums
+            for m in nums[0:]
+            if target == n - m or target == m + n
+        ]:
             if len(i) == 2:
                 return list(i)
 
 
 t_m = two_Numbers(nums, 1)
 t_n = two_Numbers(nums, 1)
-print((t_n.nums_targ([5, 5, 4, 2, 9], 1), 'nums_targ 1'))
+print((t_n.nums_targ([5, 5, 4, 2, 9], 1), "nums_targ 1"))
 # print(t_n.add_Two_Numbers([4, 4, 5], [6, 5, 4, 2, 9]), 'add_Two_Numbers')
-print((t_n.nums_targ(nums, target=7), 'nums_targ 2'))
-print((t_m.nums_targ([6, 5, 4, 2, 9], target=3), 'nums_targ 3'))
+print((t_n.nums_targ(nums, target=7), "nums_targ 2"))
+print((t_m.nums_targ([6, 5, 4, 2, 9], target=3), "nums_targ 3"))
 
 
-class dog():
-    def __init__(self, name='dog', age=1, breed=' dnt know'):
+class dog:
+    def __init__(self, name="dog", age=1, breed=" dnt know"):
         self.name = name
         self.age = age
         self.breed = breed
@@ -219,11 +228,11 @@ class dog():
     def larges_age(self, dan_age, sandy_age):
         # self.dan_age = dan_age
         # self.sandy_age = sandy_age
-        hwo_older = 'Dan' if dan_age - sandy_age > 0 else 'Sandy'
+        hwo_older = "Dan" if dan_age - sandy_age > 0 else "Sandy"
         return hwo_older
 
 
-Sandy = dog('Sandy', 14)
+Sandy = dog("Sandy", 14)
 Dan = dog(age=8)
 print(Sandy.__dict__)
 print(Dan.__dict__)

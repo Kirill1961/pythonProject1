@@ -38,7 +38,7 @@ def count_up(n):
 # # print(next(ex))
 #
 for i in count_up(-1):
-    print(i, ' 1111111')
+    print(i, " 1111111")
 
 
 # # /////////////////
@@ -92,11 +92,12 @@ for i in count_up(-1):
 #     print ('prober')
 # prober()
 
+
 def cr_gen():
     my_l = [1, 2, 3]
     for mg in my_l:
         # print(mg_i)
-        yield mg * 2, mg ** 2  # # как только код дошёл до yield происходит обращение циклу "for cr_l in cr_gen():"
+        yield mg * 2, mg**2  # # как только код дошёл до yield происходит обращение циклу "for cr_l in cr_gen():"
         # #  после этого из цикла происходит обращение к cr_gen()
 
 
@@ -142,6 +143,8 @@ def f():
             m += 1
             if m <= 5:
                 yield m
+
+
 for i in f():
     print(i, " По условию отсекаем часть (0,5) генерируемых значений")
 
@@ -157,7 +160,7 @@ print(cr_gen(2, 3))
 
 import requests
 
-urls = ('http://headfirstlabs.com', 'http://twitter.com', 'https://www.oreilly.com/')
+urls = ("http://headfirstlabs.com", "http://twitter.com", "https://www.oreilly.com/")
 
 """ Другой вариант - поместить значения перебираемые из ф-ции gen_req_ex (urls)
     в ТРИ переменные: s , d , f, тк yield возвращает три значения а затем их вывести.
@@ -169,12 +172,12 @@ def gen_req_ex(urls: tuple) -> tuple:
         yield (len(resp.content), resp.status_code, resp.url)
 
 
-for s, d, f in (gen_req_ex(urls)):
-    print(s, d, f, '|/|/')
+for s, d, f in gen_req_ex(urls):
+    print(s, d, f, "|/|/")
 
 """Если результат выводить через одну переменную, то выйдет кортеж"""
-for k in (gen_req_ex(urls)):
-    print(k, '///')
+for k in gen_req_ex(urls):
+    print(k, "///")
 
 """_________________Вывод словаря_____________________________________"""
 
@@ -184,7 +187,5 @@ def gen_req_ex(urls: tuple) -> tuple:
         yield {len(resp.content): [resp.status_code, resp.url]}
 
 
-for k in (gen_req_ex(urls)):
-    print(k, '///')
-
-
+for k in gen_req_ex(urls):
+    print(k, "///")

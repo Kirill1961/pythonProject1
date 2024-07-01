@@ -2,6 +2,7 @@ import math as mt
 from numpy import dot
 import logging
 import random
+
 # import itertools
 from itertools import accumulate
 
@@ -16,7 +17,9 @@ logger = logging.getLogger("X_O_R")
 
 # Добавлен обработчик для вывода в косоль
 sh = logging.StreamHandler()
-sh.setLevel(logging.DEBUG)  # если поставим уровень INFO, то добавленный обработчик sh невыводит в консоль
+sh.setLevel(
+    logging.DEBUG
+)  # если поставим уровень INFO, то добавленный обработчик sh невыводит в консоль
 # logger.addHandler(sh)
 
 print(logger, " рутовое имя")
@@ -27,10 +30,7 @@ print(logger.handlers, "наличие обработчиков", "\n")  # на�
 #                 [20, 20, -10],
 #                 [-60, 60, -30]]]
 # TODO: incorrect data
-xor_network = [[[1, 1, -3],
-                [1, 1, -1],
-                [-6, 6, -3]]]
-
+xor_network = [[[1, 1, -3], [1, 1, -1], [-6, 6, -3]]]
 
 
 # xor_network = [[[1, 0.5, -3],
@@ -67,10 +67,14 @@ def feed_forward():
         outputs = []
         # logger.debug(targ)
         for layer in neural_network:
-            input_with_bias = input_vector + [1]  # добавив 1 к [x, y] сравняем LEN вх с LEN скрытого слоя
+            input_with_bias = input_vector + [
+                1
+            ]  # добавив 1 к [x, y] сравняем LEN вх с LEN скрытого слоя
             # [0, 0, 1], [[20, 20, -30]
             # logger.debug((layer[0:2], input_with_bias, "neuron, input_with_bias"))
-            output_hide_without_bias = [neuron_output(neuron, input_with_bias) for neuron in layer[0:2]]  # выходы
+            output_hide_without_bias = [
+                neuron_output(neuron, input_with_bias) for neuron in layer[0:2]
+            ]  # выходы
             # из hide  для last_neuron без bias:
 
             #     logger.debug((neuron, input_with_bias, "neuron_input_with_bias")ы
@@ -78,12 +82,18 @@ def feed_forward():
 
             # input_vector = output_hide_and_last_layer
 
-            output_layer_hide = outputs[0] + [1]  # выходной вектор из скрытого добавляем + [1] для bias -30
+            output_layer_hide = outputs[0] + [
+                1
+            ]  # выходной вектор из скрытого добавляем + [1] для bias -30
             # logger.debug((output_layer_hide, "output_hide_with_bias"))
-            output_last_neuro = [neuron_output(layer[-1], output_layer_hide)]  # выход выхода
+            output_last_neuro = [
+                neuron_output(layer[-1], output_layer_hide)
+            ]  # выход выхода
             # logger.debug((output_layer_hide, "output_layer_hide"))
 
-            targets_bound_inputs = [0 if input_with_bias[0] == input_with_bias[1] else 1]  # привязка inputs к targets
+            targets_bound_inputs = [
+                0 if input_with_bias[0] == input_with_bias[1] else 1
+            ]  # привязка inputs к targets
             target_for_bp.append(targets_bound_inputs)
             # logger.debug((output_last_neuro, "output_last_neuro"))
             # logger.debug(
@@ -116,7 +126,6 @@ while n < N:
 
     # logger.debug("\n")
 
-
     # print("вход - ", input_separate, " , выход - ", wraps_feed(xor_network, input_separate))
     def backprpogate(network, input_vektor, wrap_feed_forward):
         # logger.debug((network, "network"))
@@ -129,38 +138,50 @@ while n < N:
         targets = list(j for i in t for j in i)  # целевое значение
         if input_separate_with_bias == [0, 0] and n > N - 10:
             logger.debug((n, input_separate_with_bias, outputs))
-        elif input_separate_with_bias == [0, 1] and n > N - 10 :
+        elif input_separate_with_bias == [0, 1] and n > N - 10:
             logger.debug((n, input_separate_with_bias, outputs))
         elif input_separate_with_bias == [1, 0] and n > N - 10:
             logger.debug((n, input_separate_with_bias, outputs))
         elif input_separate_with_bias == [1, 1] and n > N - 10:
             logger.debug((n, input_separate_with_bias, outputs))
 
-
-
         # logger.debug((n, input_separate_with_bias, outputs))
 
-
-        outputs_deltas = [output * (1 - output) * (output - target) for  # LG выходного слоя
-                          output, target in zip(outputs, [targets[-1]])]  # кортежи output/target для error
+        outputs_deltas = [
+            output * (1 - output) * (output - target)  # LG выходного слоя
+            for output, target in zip(outputs, [targets[-1]])
+        ]  # кортежи output/target для error
         # logger.debug((outputs_deltas, "outputs_deltas"))
 
         # TODO: MY
         """ MY код для одного выходного нейрона"""
 
-        for k, outputs in enumerate(args_from_feed_forward[-2]):  # k - номера выходных нейронов
+        for k, outputs in enumerate(
+            args_from_feed_forward[-2]
+        ):  # k - номера выходных нейронов
             # logger.debug((k, outputs, "outputs"))
 
-            for i, hidden_output in enumerate(hidden_outputs):  # вых. hide слоя + [1]bias, i-№ нейронов скрытого слоя
-                xor_network[0][-1][i] -= outputs_deltas[0] * hidden_output  # новые веса выходного слоя
-                hidden_deltas = hidden_output * (1 - hidden_output) * \
-                                dot(outputs_deltas[0], xor_network[0][-1][i])  # LG скрытого слоя [-60,60,30]
+            for i, hidden_output in enumerate(
+                hidden_outputs
+            ):  # вых. hide слоя + [1]bias, i-№ нейронов скрытого слоя
+                xor_network[0][-1][i] -= (
+                    outputs_deltas[0] * hidden_output
+                )  # новые веса выходного слоя
+                hidden_deltas = (
+                    hidden_output
+                    * (1 - hidden_output)
+                    * dot(outputs_deltas[0], xor_network[0][-1][i])
+                )  # LG скрытого слоя [-60,60,30]
                 # logger.debug((xor_network[0][-1][i], "new_weight"))
                 # logger.debug(( hidden_deltas, "<<<<"))
 
-                for j, input_x in enumerate(input_vektor + [1]):  # j - № нейрона входного слоя, + [1] для bias
+                for j, input_x in enumerate(
+                    input_vektor + [1]
+                ):  # j - № нейрона входного слоя, + [1] для bias
                     mul_grad_by_input = hidden_deltas * input_x
-                    new_weight = [k for k in xor_network[0]][i][j] - mul_grad_by_input  # прежний вес минус GL * вход
+                    new_weight = [k for k in xor_network[0]][i][
+                        j
+                    ] - mul_grad_by_input  # прежний вес минус GL * вход
                     # logger.debug (([j], hidden_deltas, " * ",  input_x,  " = ", mul_grad_by_input, " >>>>"))
                     # logger.debug(({i},  input_x, " * ",hidden_deltas, " = ", mul_grad_by_input,  # !!!!!!!!
                     #               [k for k in xor_network[0]][i][j]))
@@ -181,7 +202,5 @@ while n < N:
         #     for i, hidden_neuron in enumerate(xor_network[0][0:2]):   # веса скрытого, i - номер скрытого
         #         for j, input in enumerate(input_vektor + [1]):   # j - номер входного
         #             hidden_neuron[j] -= (hidden_deltas[i][0] * input )  # новый вес скрытого
-
-
 
     backprpogate(xor_network, input_separate_with_bias, wrap_feed)

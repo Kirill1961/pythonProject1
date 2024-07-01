@@ -2,26 +2,98 @@ import random
 from collections import Counter
 
 # этот documents отображён в виде обработанного текста после tokenizer, до обработки это единый list со строчным ОБ
-documents = [['MongoDB', 'data science', 'Spark', 'Postgres', 'pandas', 'NoSQL''Big Data'],
-             ['Storm', 'Java', 'pandas', 'MongoDB', 'data science', 'pandas', 'data science'],
-             ['C++', 'Scikit-learn', 'regression', 'neural network', 'MongoDB', 'Big Data', 'data science', 'NoSQL Big Data'],
-             ['statistic', 'R', 'go', 'scipy', 'numpy', 'MongoDB', 'pandas', 'data science'],
-             ['Storm', 'regression', 'neural network', 'MongoDB', 'Big Data', 'data science', 'NoSQL Big Data'],
-             ['C++', 'Scikit-learn', 'regression', 'neural network', 'Big Data', 'pandas'],
-             ['Scikit-learn', 'regression', 'neural network', 'MongoDB', 'Big Data', 'data science', 'NoSQL Big Data'],
-             ['statistic', 'R', 'go', 'scipy', 'numpy', 'data science', 'pandas', 'NoSQL''Big Data'],
-             ['Python', 'Hadoop', 'numpy', 'NoSQL', 'MongoDB', 'HBase', 'data science', 'NoSQL''Big Data'],
-             ['Cassandra', 'machine learning', 'Haskel', 'C++', 'scipy', 'data science', 'NoSQL Big Data'],
-             ['Python', 'Hadoop', 'numpy', 'NoSQL Big Data', 'pandas', 'NoSQL Big Data'],
-             ['statistic', 'Java', 'pandas', 'MongoDB', 'data science'],
-             ['numpy', 'decision trees', 'libsvm', 'MongoDB', 'probability'],
-             ['statistic', 'R', 'go', 'scipy', 'numpy', 'machine learning', 'data science', 'NoSQL Big Data'],
-             ['Python', 'Hadoop', 'numpy', 'data science', 'MongoDB', 'NoSQL''Big Data'],
-             ['HBase', 'Storm', 'Java', 'pandas'],
-             ['statistic', 'R', 'go', 'scipy', 'C++', 'MongoDB', 'pandas', 'data science', 'NoSQL Big Data'],
-             ['Spark', 'Postgres', 'Cassandra', 'machine learning', 'Haskel', 'pandas'],
-             ['statistic', 'R', 'go', 'scipy', 'HBase', 'pandas', 'data science'],
-             ['Python', 'Hadoop', 'numpy', 'NoSQL', 'HBase', 'NoSQL Big Data']]
+documents = [
+    ["MongoDB", "data science", "Spark", "Postgres", "pandas", "NoSQL" "Big Data"],
+    ["Storm", "Java", "pandas", "MongoDB", "data science", "pandas", "data science"],
+    [
+        "C++",
+        "Scikit-learn",
+        "regression",
+        "neural network",
+        "MongoDB",
+        "Big Data",
+        "data science",
+        "NoSQL Big Data",
+    ],
+    ["statistic", "R", "go", "scipy", "numpy", "MongoDB", "pandas", "data science"],
+    [
+        "Storm",
+        "regression",
+        "neural network",
+        "MongoDB",
+        "Big Data",
+        "data science",
+        "NoSQL Big Data",
+    ],
+    ["C++", "Scikit-learn", "regression", "neural network", "Big Data", "pandas"],
+    [
+        "Scikit-learn",
+        "regression",
+        "neural network",
+        "MongoDB",
+        "Big Data",
+        "data science",
+        "NoSQL Big Data",
+    ],
+    [
+        "statistic",
+        "R",
+        "go",
+        "scipy",
+        "numpy",
+        "data science",
+        "pandas",
+        "NoSQL" "Big Data",
+    ],
+    [
+        "Python",
+        "Hadoop",
+        "numpy",
+        "NoSQL",
+        "MongoDB",
+        "HBase",
+        "data science",
+        "NoSQL" "Big Data",
+    ],
+    [
+        "Cassandra",
+        "machine learning",
+        "Haskel",
+        "C++",
+        "scipy",
+        "data science",
+        "NoSQL Big Data",
+    ],
+    ["Python", "Hadoop", "numpy", "NoSQL Big Data", "pandas", "NoSQL Big Data"],
+    ["statistic", "Java", "pandas", "MongoDB", "data science"],
+    ["numpy", "decision trees", "libsvm", "MongoDB", "probability"],
+    [
+        "statistic",
+        "R",
+        "go",
+        "scipy",
+        "numpy",
+        "machine learning",
+        "data science",
+        "NoSQL Big Data",
+    ],
+    ["Python", "Hadoop", "numpy", "data science", "MongoDB", "NoSQL" "Big Data"],
+    ["HBase", "Storm", "Java", "pandas"],
+    [
+        "statistic",
+        "R",
+        "go",
+        "scipy",
+        "C++",
+        "MongoDB",
+        "pandas",
+        "data science",
+        "NoSQL Big Data",
+    ],
+    ["Spark", "Postgres", "Cassandra", "machine learning", "Haskel", "pandas"],
+    ["statistic", "R", "go", "scipy", "HBase", "pandas", "data science"],
+    ["Python", "Hadoop", "numpy", "NoSQL", "HBase", "NoSQL Big Data"],
+]
 # TODO documents
 # documents = [
 #     ['MongoDB', 'data science', 'Spark'],
@@ -46,7 +118,8 @@ def sample_from(weights):
     rnd = total * random.random()
     for i, w in enumerate(weights):
         rnd -= w
-        if rnd <= 0: return i
+        if rnd <= 0:
+            return i
 
 
 # print(sample_from([1, 1, 3]), "sample_from")
@@ -54,10 +127,14 @@ def sample_from(weights):
 K = 4
 
 """Сохраним в переменные функционал"""
-document_topic_counts = [Counter() for _ in documents]  # список пустых ОБ Counter, для вывода распределения topic|doc
+document_topic_counts = [
+    Counter() for _ in documents
+]  # список пустых ОБ Counter, для вывода распределения topic|doc
 # print(document_topic_counts, "document_topic_counts")
 
-topic_word_counts = [Counter() for _ in range(K)]  # список пустых ОБ Counter, для вывода распределения W|topic
+topic_word_counts = [
+    Counter() for _ in range(K)
+]  # список пустых ОБ Counter, для вывода распределения W|topic
 # print(topic_word_counts, "topic_word_counts")
 
 topic_counts = [0 for _ in range(K)]  # суммарное число слов назначенное каждой теме
@@ -75,43 +152,51 @@ D = len(documents)
 
 # TODO probability
 def p_topic_given_document(topic, d, alpha=0.1):  # P (t | d)
-   t =((document_topic_counts[d][topic] + alpha) / (documents_lenghts[d] + K * alpha))
+    t = (document_topic_counts[d][topic] + alpha) / (documents_lenghts[d] + K * alpha)
 
-   # if t > 0.5: print(topic, t)
-   return ((document_topic_counts[d][topic] + alpha) /
-            (documents_lenghts[d] + K * alpha))
+    # if t > 0.5: print(topic, t)
+    return (document_topic_counts[d][topic] + alpha) / (
+        documents_lenghts[d] + K * alpha
+    )
 
 
 def p_word_given_topic(word, topic, beta=0.1):
-    return ((topic_word_counts[topic][word] + beta) /
-            (topic_counts[topic] + W * beta))
+    return (topic_word_counts[topic][word] + beta) / (topic_counts[topic] + W * beta)
 
 
 random.seed(0)  # seed - фиксируем случайные назначения тематик в документах по кол-ву W
 document_topics = [[random.randrange(K) for word in document] for document in documents]
 
 
-
-
-
-
-print(document_topics, "вытаскиваем W из doc's и вместо W ставим № темы, assignment topic for word")
+print(
+    document_topics,
+    "вытаскиваем W из doc's и вместо W ставим № темы, assignment topic for word",
+)
 # print("doc", "t|d", "w|t", "numW|t in doc", "        topic")
 # TODO topic
 for d in range(D):  # индекс для extract doc из doc's
-    for word, topic in zip(documents[d], document_topics[d]):  # Назначение каждому W - тематики
-        document_topic_counts[d][topic] += 1  # список объектов Counter один для каждого doc, суммируются тематики
+    for word, topic in zip(
+        documents[d], document_topics[d]
+    ):  # Назначение каждому W - тематики
+        document_topic_counts[d][
+            topic
+        ] += 1  # список объектов Counter один для каждого doc, суммируются тематики
         # в док-х, сколько раз тема назначается данному док-ту, D (topic|doc), key-[topic]: val- += 1 кол-во
 
-        topic_word_counts[topic][word] += 1  # список объектов Counter один для каждой темы, суммируются слова в темах,
+        topic_word_counts[topic][
+            word
+        ] += 1  # список объектов Counter один для каждой темы, суммируются слова в темах,
         # сколько раз слово назначается данной тематике, D (W | topic), key-[word] , value-topic
 
-        topic_counts[topic] += 1  # суммарное число слов назначенное каждой теме, список чисел один д/каждой темы
+        topic_counts[
+            topic
+        ] += 1  # суммарное число слов назначенное каждой теме, список чисел один д/каждой темы
 
         # print(d, " ", document_topic_counts[d][topic], "  ", end=" ")  # распределение topic|doc
         # print(topic_word_counts[topic][word], "  ", end=" ")  # распределение W|topic
         # print(topic_counts[topic], "слова  ", end=" ")  # суммарное число слов назначенное каждой теме
         # print("  в теме - ", topic, word)
+
 
         # print("\t" * 4, p_word_given_topic(word, topic, beta=0.1))
         # print("\t" * 4, p_topic_given_document(topic, d, alpha=0.1))
@@ -121,7 +206,7 @@ def topic_weight(d, word, k):
 
 
 def choose_new_topic(d, word):
-   return sample_from([topic_weight(d, word, k) for k in range(K)])
+    return sample_from([topic_weight(d, word, k) for k in range(K)])
 
 
 for iter in range(1000):
@@ -144,7 +229,8 @@ for iter in range(1000):
 print(" тема, слово, count")
 for k, word_counts in enumerate(topic_word_counts):
     for word, count in word_counts.most_common():
-        if count > 0: print(k, "  ", word, "  ",count)
+        if count > 0:
+            print(k, "  ", word, "  ", count)
 
 topic_names = ["statistic", "data base", "NLP", "Big Data"]
 

@@ -17,10 +17,13 @@ class Solution:
             st += 1
             len_sub += 1
             for v in [s]:
-                b = list(v[st - 1:len_sub - 1])
+                b = list(v[st - 1 : len_sub - 1])
                 set_res = set()
-                for headlist in [b[ind:ind + len(words[0])] for ind in range(0, len(b), len(words[0]))]:
-                    set_res.add(''.join(headlist))
+                for headlist in [
+                    b[ind : ind + len(words[0])]
+                    for ind in range(0, len(b), len(words[0]))
+                ]:
+                    set_res.add("".join(headlist))
                 # print(set(words), set_res)
                 if set(words) == set_res:
                     output.append(num - 1)
@@ -33,23 +36,21 @@ class Solution:
 
 
 ind_substring = Solution()
-ind_substring.substring('barfoofoobarthefoobarman', ['bar', 'foo', 'the'])
+ind_substring.substring("barfoofoobarthefoobarman", ["bar", "foo", "the"])
 print(ind_substring)
-
 
 
 # ЗАготовка функции для вышенаписанного класса
 
 
+s = ["barfoothefoobarman"]  # 18
+w = ["foo", "bar"]
 
-s = ['barfoothefoobarman'] # 18
-w = ['foo','bar']
 
-
-print(set(''.join(w)))
+print(set("".join(w)))
 
 num = 0
-sub_s = ['foo','bar']
+sub_s = ["foo", "bar"]
 len_sub = len(sub_s) * len(sub_s[0])
 len_s = sum(len(i) for i in s)
 len_while = len_s - len_sub
@@ -62,9 +63,9 @@ while num < len_while:
     sp += 1
     for v in s:
         a = set(sub_s)
-        b = v[st - 1:sp - 1]
+        b = v[st - 1 : sp - 1]
         p = {str(b[0:2]), str(b[2:4]), str(b[4:])}
         print(num, a, p)
         if a == p:
-            output.append(num-1)
+            output.append(num - 1)
             print(output)

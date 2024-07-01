@@ -11,9 +11,9 @@ from functools import wraps
 def check_logged_in(func):
     @wraps(func)
     def wrapper(*args):
-        print('check_logged_in')
+        print("check_logged_in")
         # if 'logged_in' in session:
-        return func('check')
+        return func("check")
         # return 'You are not logged in'
 
     return wrapper
@@ -22,15 +22,16 @@ def check_logged_in(func):
 def good_programmer(func):
     @wraps(func)
     def wrapper_good_programmer(*args):
-        print('wrapper_good_programmer')
-        return func('wrapper_good_programmer''ok')
+        print("wrapper_good_programmer")
+        return func("wrapper_good_programmer" "ok")
 
     return wrapper_good_programmer
 
 
 def merge_decor(func):
 
-    return check_logged_in (good_programmer(func))
+    return check_logged_in(good_programmer(func))
+
 
 # if 'logged_in' in session:
 #     return func(*args, **kwargs)

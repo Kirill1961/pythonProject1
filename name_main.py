@@ -9,8 +9,10 @@
 
 # example_module.py
 
+
 def greet(name):
     return f"Hello, {name}!"
+
 
 if __name__ == "__main__":
     print(greet("World"))
@@ -19,4 +21,5 @@ if __name__ == "__main__":
 # main.py
 
 from lesson import map
-print(map.up('three four'))
+
+print(map.up("three four"))

@@ -3,6 +3,7 @@ from typing import Type
 
 from _ctypes_test import func
 from flask import Flask, session
+
 # from checker import check_logged_in, good_programmer
 from checker import *
 from functools import wraps
@@ -50,12 +51,13 @@ app = Flask(__name__)
 #
 # print(pro_decor(10))
 
-@app.route('/')
+
+@app.route("/")
 def hello() -> str:
-    return 'Hello from the simple webapp'
+    return "Hello from the simple webapp"
 
 
-@app.route('/page1')
+@app.route("/page1")
 # @good_programmer
 @check_logged_in
 @good_programmer
@@ -64,7 +66,7 @@ def page1(x) -> Type[str]:
     # def wrap_pag():
     #     return 'Page 2'
 
-    return x,y
+    return x, y
 
 
 # @app.route('/page2')
@@ -79,21 +81,21 @@ def page1(x) -> Type[str]:
 #     return 'This page3'
 
 
-@app.route('/login')
+@app.route("/login")
 def do_login() -> str:
-    session['logged_in'] = True
-    return 'You are now logged in'
+    session["logged_in"] = True
+    return "You are now logged in"
 
 
 #
 #
-@app.route('/logout')
+@app.route("/logout")
 def do_logout() -> str:
-    session.pop('logged_in')
-    return 'You are now logged out'
+    session.pop("logged_in")
+    return "You are now logged out"
 
 
-app.secret_key = 'YoNi'
+app.secret_key = "YoNi"
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)

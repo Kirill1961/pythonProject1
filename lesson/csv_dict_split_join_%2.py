@@ -50,16 +50,16 @@ from datetime import datetime
 
 
 def t24(time24):
-    return datetime.strptime(time24, '%H:%M').strftime('%I:%M%p')
+    return datetime.strptime(time24, "%H:%M").strftime("%I:%M%p")
 
 
-print(t24('18:30'))
+print(t24("18:30"))
 
-t = datetime.strptime('06:30', '%H:%M').strftime('%I:%M%p')
+t = datetime.strptime("06:30", "%H:%M").strftime("%I:%M%p")
 print(t)
 
 dt = datetime.now()
-print(dt.strftime('%H:%M - %m.%d.%Y года'))
+print(dt.strftime("%H:%M - %m.%d.%Y года"))
 
 """ Мой вариант преобразования из 24-час формата в 12-час и слов из верхн регистра в нижний 
 начинающихся с заглавных букв"""
@@ -80,58 +80,67 @@ print(dt.strftime('%H:%M - %m.%d.%Y года'))
 
 
 def convert24_12(time24):
-    return datetime.strptime(time24, '%H:%M').strftime('%I:%M%p')
+    return datetime.strptime(time24, "%H:%M").strftime("%I:%M%p")
 
 
-with open('c_data.csv', 'r') as file:
+with open("c_data.csv", "r") as file:
     ignor = file.readline()
     flights = {}
     for line in file:
-        """ !!!! Разъяснение по split(',') - цикл помещает в line из 'c_data.csv' целую строку из 2х значений,
-            компилятор видит один объект(строку) поэтому что бы приравнять к двум переменным k и v надо
-            значения в строке разделить запятой """
-        k, v = line.strip().split(',')  # Методы в ряд это цепочка методов, split(',') делит запятыми,
+        """!!!! Разъяснение по split(',') - цикл помещает в line из 'c_data.csv' целую строку из 2х значений,
+        компилятор видит один объект(строку) поэтому что бы приравнять к двум переменным k и v надо
+        значения в строке разделить запятой"""
+        k, v = line.strip().split(
+            ","
+        )  # Методы в ряд это цепочка методов, split(',') делит запятыми,
         # strip() убирает лишние символы
         flights[k] = v
         # pprint.pprint(flights)
         flights2 = {}
         # print(k, v)
-for k, v in flights.items():  # items очищает словарь от кавычек и скобок, извлекает из словаря key и value
+for (
+    k,
+    v,
+) in (
+    flights.items()
+):  # items очищает словарь от кавычек и скобок, извлекает из словаря key и value
     flights2[convert24_12(k)] = v.title()
 pprint.pprint(flights2)
 
 """ _______________________Преобразование 24 / 12 с помощью генератора словаря"""
-more_flights = {convert24_12(k): v.title() for k, v in flights.items() if v == 'WEST END'}
+more_flights = {
+    convert24_12(k): v.title() for k, v in flights.items() if v == "WEST END"
+}
 print(more_flights)
 
 """ НЕЗАКОНЧЕНО Моё преобразование 24 / 12 с помощью генератора словаря"""
 
-with open('c_data.csv', 'r') as fil:
+with open("c_data.csv", "r") as fil:
     ignor = fil.readline()
 
     # for i in fil:
     #     # print(i)
     #     kk, vv = i.strip().split(',')
     #     print(kk, vv)
-    fl = [{(i.strip().split(','))[0]: (i.strip().split(','))[1]} for i in fil]
+    fl = [{(i.strip().split(","))[0]: (i.strip().split(","))[1]} for i in fil]
     print(fl)
 
 """ ','.join используется при конвертации списка в строку. Метод принимает итерируемый объект в качестве аргумента
     например список и преобразует его в строку как бы вытягивая из списковых кавычек строчные значения.
     Разделить преобразованные значения можно запятой указав это в ' ' перед join """
-l_s = ['ab', 'cd']
-print(','.join(l_s), ' join join join')
+l_s = ["ab", "cd"]
+print(",".join(l_s), " join join join")
 
 """ Ещё способ преобразования списка в строку с join"""
-mylist = [u'a', u'b', u'c']
+mylist = ["a", "b", "c"]
 result = "('%s')" % "','".join(mylist)
-print(result, '  % join % join % join')
+print(result, "  % join % join % join")
 
-s = 'Welcome to the python world'
+s = "Welcome to the python world"
 name = s[10:]
 print(name)
 A1 = s.split()
-print(A1, '  split A1 A1 A1')
+print(A1, "  split A1 A1 A1")
 
 
 """ Оператор % выполняет деление по модулю те возвращает только остаток, 
@@ -159,7 +168,7 @@ print(new_data)
 
 """ Проверяем тип объекта c isinstance() """
 
-dsta = [1, 'two', 3, 4, 'five', 6, 'seven', 8]
+dsta = [1, "two", 3, 4, "five", 6, "seven", 8]
 new_data = []
 for num in dsta:
     if isinstance(num, str):
@@ -173,7 +182,7 @@ print(new_data)
 
 """ Разбиваем tuple на строчные объекты и преобразуем все стр ОБ в строки с заглавными буквами """
 
-data = ('So long and thanks for all the fish'.split())
+data = "So long and thanks for all the fish".split()
 new_data = []
 for word in data:
     new_data.append(word.title())
@@ -204,9 +213,11 @@ print(my_fts)
 """ передали ф-ции set сокращённый словарь fts_swap и извлекли из него ключи,
     получили множество с  ключами из fts_swap"""
 my_ftss = set(fts_swap.keys())
-print(my_ftss, '//')
+print(my_ftss, "//")
 
-fts = {convert24_12(k): v.title() for k, v in flights.items()}  # Полное расписание д/дальнейших действий
+fts = {
+    convert24_12(k): v.title() for k, v in flights.items()
+}  # Полное расписание д/дальнейших действий
 pprint.pprint(fts)
 
 """ Мой вариант , обмен местами key и value, key - должны стать пункты назначения

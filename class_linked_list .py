@@ -32,19 +32,28 @@ class LinkedList:
         locals() и globals() - вывод всех локальных и глобальных переменных"""
 
     def contains(self, cat):
-        lastbox = self.head  # lastbox в данной инициализации является всей цепочкой значений и ссылок,
+        lastbox = (
+            self.head
+        )  # lastbox в данной инициализации является всей цепочкой значений и ссылок,
         # здесь мы из ЭКЗ, он же связ список, находящегося в self,берём переменную head(self.head),
         # в которой находятся данные и ссылки рассматриваемого ЭКЗ, создаём переменную lastbox котор ссылается на
         # self.head
-        while lastbox is not None:  # прокручиваем через while - lastbox в котором данные из экземпляра
-            if cat == lastbox.cat:  # если запрошенное значение cat находится в цепочке узлов lastbox.cat то True
-                print('This node found :', cat, end=' ')  # вывод присутствующего узла
+        while (
+            lastbox is not None
+        ):  # прокручиваем через while - lastbox в котором данные из экземпляра
+            if (
+                cat == lastbox.cat
+            ):  # если запрошенное значение cat находится в цепочке узлов lastbox.cat то True
+                print("This node found :", cat, end=" ")  # вывод присутствующего узла
                 return True
             else:
 
-                lastbox = lastbox.nextcat  # если нет, запрошенного значения в данном связанном списке, то lastbox
-        print('This node definded : ', cat,
-              end=' ')  # вывод отсутствующего узла, в цикле выводить нельзя тк будут повторения
+                lastbox = (
+                    lastbox.nextcat
+                )  # если нет, запрошенного значения в данном связанном списке, то lastbox
+        print(
+            "This node definded : ", cat, end=" "
+        )  # вывод отсутствующего узла, в цикле выводить нельзя тк будут повторения
         return False  # инициализируем с сcылками на узлы nextcat, где последний nextcat = None
 
     """ _________________Добавить узел в lenkedlist___________________
@@ -65,19 +74,26 @@ class LinkedList:
         self.cat = cat- объект , data содержащаяся в узле; self.nextcat  - ссылка на след узел"""
 
     def addToEnd(self, newcat):
-        """ Создаём новую коробку с data newcat, newbox это экземпляр класса Вох с аргументом cat и
-         ссылкой nextcat"""
+        """Создаём новую коробку с data newcat, newbox это экземпляр класса Вох с аргументом cat и
+        ссылкой nextcat"""
         newbox = Box(newcat)  # трафарет для создания первого и последующих узлов
         if self.head is None:  # проверяем на наличие головного узла
             self.head = newbox  # если 1го узла нет, тогда newbox, становится первым узлом и все значения помещёные в newbox
             # передаются в self.head, 1й узел принимает имя переменной head.
             return
-        lastbox = self.head  # текущий, следующий узел lastbox приравняв к self.head получает адрес и data через self.head
-        while lastbox.nextcat:  # проверяем весь список на наличие узлов по ссылке на след узел
-            lastbox = lastbox.nextcat  # с последнего узла ПЕРЕХОДИМ по ссылке nextcat на newbox
-            print(lastbox.cat, '   lastbox.nextcat 11111 ')
+        lastbox = (
+            self.head
+        )  # текущий, следующий узел lastbox приравняв к self.head получает адрес и data через self.head
+        while (
+            lastbox.nextcat
+        ):  # проверяем весь список на наличие узлов по ссылке на след узел
+            lastbox = (
+                lastbox.nextcat
+            )  # с последнего узла ПЕРЕХОДИМ по ссылке nextcat на newbox
+            print(lastbox.cat, "   lastbox.nextcat 11111 ")
         lastbox.nextcat = newbox  # это последний узел, он вне цикла
-        print(lastbox.cat, '   lastbox.nextcat 2222')
+        print(lastbox.cat, "   lastbox.nextcat 2222")
+
     def get(self, catIndex):
         lastbox = self.head
         boxIndex = 0
@@ -90,14 +106,18 @@ class LinkedList:
     def __str__(self):  # Используем ф-цию __str__ для вывода в строчном формате
 
         lastbox = self.head
-        line = '['
-        while lastbox.nextcat:  # Прокручиваем все боксы lastbox по ссылкам nextcat -> while lastbox.nextcat:
+        line = "["
+        while (
+            lastbox.nextcat
+        ):  # Прокручиваем все боксы lastbox по ссылкам nextcat -> while lastbox.nextcat:
             # line = '[['   # Назначили строчную переменную куда будут помещаться str данные cat
             # line += '+ = '   # Если ниже поставить знаки + =, то получим конкатенацию str значений
-            line += lastbox.cat + ','   # прибавляет узлы lastbox.cat из итерации while lastbox.nextcat:
+            line += (
+                lastbox.cat + ","
+            )  # прибавляет узлы lastbox.cat из итерации while lastbox.nextcat:
             # line += ','
             lastbox = lastbox.nextcat
-        line += lastbox.cat + ']'
+        line += lastbox.cat + "]"
 
         return line
 
@@ -172,15 +192,20 @@ class LinkedList:
     #         if index_node == index:
     #             return get_node.cat
     """ ____________________Вариант по индексу от  LEETCODE_________________________ """
+
     def get_from_index(self, index):
         get_node = self.head
         index_node = 0
-        while  index_node <= index : # цикл крутит пока index_node < или = заданному index
-            if index_node == index: # как только index_node и index сравнялись возвращается значение из linkedlist
+        while (
+            index_node <= index
+        ):  # цикл крутит пока index_node < или = заданному index
+            if (
+                index_node == index
+            ):  # как только index_node и index сравнялись возвращается значение из linkedlist
                 return get_node.cat  #  возврат значения из linkedlist
             index_node += 1
-            if index > index_node:   # фильтр на случай несуществующего индекса
-                return 'This index not found' # выводим сообщение
+            if index > index_node:  # фильтр на случай несуществующего индекса
+                return "This index not found"  # выводим сообщение
             else:
                 get_node = get_node.nextcat
 
@@ -191,13 +216,13 @@ class LinkedList:
 # cnb = LinkedList()
 cwb = LinkedList()
 
-cwb.addToEnd('100')
-cwb.addToEnd('250')
-cwb.addToEnd('350')
-cwb.addToEnd('450')
+cwb.addToEnd("100")
+cwb.addToEnd("250")
+cwb.addToEnd("350")
+cwb.addToEnd("450")
 # print(cwb.get_cat())
-print(cwb.get_from_index(5), '    cwb.get_from_index(5) ')
-print(cwb.get(0), '   cwb.get(0)  ')
+print(cwb.get_from_index(5), "    cwb.get_from_index(5) ")
+print(cwb.get(0), "   cwb.get(0)  ")
 
 # cnb = LinkedList()
 # cnb.addToEnd('400')
@@ -207,7 +232,7 @@ print(cwb.get(0), '   cwb.get(0)  ')
 
 
 # print(cnb, 'cnb  ')
-print(cwb, 'cwb')
+print(cwb, "cwb")
 # print(cwb.__dict__, '__dict____dict____dict__')
 # print(cwb.contains('350'), 'cwb.contains')
 

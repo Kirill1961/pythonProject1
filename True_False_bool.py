@@ -14,8 +14,13 @@ a = 5
 b = 5
 bo_ol = [a == b for _ in range(5)]
 print((bo_ol, " Список из одних True"))
-print([i for i in filter(lambda r: not r is False, bo_ol)], " ?? not is False - отрицание наличия False")
-print([i for i in filter(lambda r: not r, bo_ol)], " ?? not  - отрицание отсутствия True")
+print(
+    [i for i in filter(lambda r: not r is False, bo_ol)],
+    " ?? not is False - отрицание наличия False",
+)
+print(
+    [i for i in filter(lambda r: not r, bo_ol)], " ?? not  - отрицание отсутствия True"
+)
 if [i for i in filter(lambda r: not r, bo_ol)] is True:
     print("ok")
 else:
@@ -23,12 +28,24 @@ else:
 
 # Определяем наличие True / False в словаре оператором IN
 # filter передаёт в lambda список bo_ol.
-print(True in [r for r in filter(lambda r: r is True, bo_ol)], " фильтруем из списка bo_ol только True")
-print(False in [r for r in filter(lambda r: r is True, bo_ol)], " фильтруем из списка bo_ol только False")
+print(
+    True in [r for r in filter(lambda r: r is True, bo_ol)],
+    " фильтруем из списка bo_ol только True",
+)
+print(
+    False in [r for r in filter(lambda r: r is True, bo_ol)],
+    " фильтруем из списка bo_ol только False",
+)
 
 # определяем пустой или заполненный список с BOOL
-print(bool([i for i in filter(lambda x: x is False, bo_ol)]), " проверка присутствия  False - отсутствует")
-print(bool([i for i in filter(lambda x: x is True, bo_ol)]), " проверка присутствия  True - присутствует")
+print(
+    bool([i for i in filter(lambda x: x is False, bo_ol)]),
+    " проверка присутствия  False - отсутствует",
+)
+print(
+    bool([i for i in filter(lambda x: x is True, bo_ol)]),
+    " проверка присутствия  True - присутствует",
+)
 
 
 # фильтрация списка содержащего только True по РЕР-8 и мой самопис
@@ -42,6 +59,3 @@ if bool([_ for _ in filter(lambda row: row is False, quotient)]) == False:
     print(" True, фильтрация списка содержащего только True, мой самопис")
 else:
     print("False, фильтрация списка содержащего только True, мой самопис")
-
-
-

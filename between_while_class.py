@@ -7,7 +7,7 @@ class Class_first:
         print(a)
         while a < 5:
             a += 1
-            print('a/c =', a)
+            print("a/c =", a)
             valaa = Class_second()
             valaa.bb(a)
             if a == 5:
@@ -25,7 +25,7 @@ class Class_second:
         b = c * 5
         if c == 5:
             return b
-        print('     b =', b )
+        print("     b =", b)
 
 
 expir_f = Class_first()

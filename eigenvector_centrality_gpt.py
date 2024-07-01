@@ -4,32 +4,48 @@ import matplotlib.pyplot as plt
 import numpy as np
 import math as mt
 
-users: list[dict] = [{'id': 0, 'name': 'Alice'},  # list[dict] - аннотация
-                     {'id': 1, 'name': 'Benjamin'},
-                     {'id': 2, 'name': 'Charlotte'},
-                     {'id': 3, 'name': 'David'},
-                     {'id': 4, 'name': 'Emily'},
-                     {'id': 5, 'name': 'Frederick'},
-                     {'id': 6, 'name': 'Grace'},
-                     {'id': 7, 'name': 'Henry'},
-                     {'id': 8, 'name': 'Isabella'},
-                     {'id': 9, 'name': 'James'}]
+users: list[dict] = [
+    {"id": 0, "name": "Alice"},  # list[dict] - аннотация
+    {"id": 1, "name": "Benjamin"},
+    {"id": 2, "name": "Charlotte"},
+    {"id": 3, "name": "David"},
+    {"id": 4, "name": "Emily"},
+    {"id": 5, "name": "Frederick"},
+    {"id": 6, "name": "Grace"},
+    {"id": 7, "name": "Henry"},
+    {"id": 8, "name": "Isabella"},
+    {"id": 9, "name": "James"},
+]
 
-friendships = [(0, 1), (0, 2), (1, 2), (1, 3), (2, 3), (3, 4),
-               (4, 5), (5, 6), (5, 7), (6, 8), (7, 8), (8, 9)]
+friendships = [
+    (0, 1),
+    (0, 2),
+    (1, 2),
+    (1, 3),
+    (2, 3),
+    (3, 4),
+    (4, 5),
+    (5, 6),
+    (5, 7),
+    (6, 8),
+    (7, 8),
+    (8, 9),
+]
 
 # Количество вершин
-vertex_num = (max(j for i in friendships for j in i) + 1)
+vertex_num = max(j for i in friendships for j in i) + 1
 
 # adjacency_matrix - вариант Грасса + моё дополнение
 # генерируем все варианты пар для сравнения с friendships
 d = [(i, j) for i in range(vertex_num) for j in range(vertex_num)]
 
-adjacency_1 = np.array([1 if t in friendships or t in friendships else 0 for t in d]).reshape(10, 10)
+adjacency_1 = np.array(
+    [1 if t in friendships or t in friendships else 0 for t in d]
+).reshape(10, 10)
 print(adjacency_1, "adjacency_matrix - вариант Грасса + моё дополнение")
 
 # Количество вершин
-vertex_num = (max(j for i in friendships for j in i) + 1)
+vertex_num = max(j for i in friendships for j in i) + 1
 
 print(vertex_num)
 
@@ -62,8 +78,22 @@ plt.savefig("graph_between_central.png")
 
 # eigenvector centrality from gpt
 # Создание графа
-G = nx.Graph([(0, 1), (0, 2), (1, 2), (1, 3), (2, 3), (3, 4),
-              (4, 5), (5, 6), (5, 7), (6, 8), (7, 8), (8, 9)])
+G = nx.Graph(
+    [
+        (0, 1),
+        (0, 2),
+        (1, 2),
+        (1, 3),
+        (2, 3),
+        (3, 4),
+        (4, 5),
+        (5, 6),
+        (5, 7),
+        (6, 8),
+        (7, 8),
+        (8, 9),
+    ]
+)
 
 # Вычисление центральности собственного вектора из gpt
 centrality = nx.eigenvector_centrality_numpy(G)

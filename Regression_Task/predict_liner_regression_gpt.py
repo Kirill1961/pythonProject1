@@ -13,4 +13,4 @@ model.fit(X_train, y_train)
 # Предсказываем для нового значения
 X_new = np.array([[6]])
 y_pred = model.predict(X_new)
-print(f'Предсказанное значение для X=6: {y_pred[0]:.2f}')
+print(f"Предсказанное значение для X=6: {y_pred[0]:.2f}")

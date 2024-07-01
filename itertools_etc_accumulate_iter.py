@@ -16,16 +16,25 @@ def b(x):
     return r
 
 
-print(b([[i] for i in a])[-1], " accumulate - Накопление в список элементов из другого списка ", "\n")
+print(
+    b([[i] for i in a])[-1],
+    " accumulate - Накопление в список элементов из другого списка ",
+    "\n",
+)
 
 c = [["qwer"], ["asdf"], ["zxcv"]]
+
 
 def b(x):
     r = list(it.accumulate(x))
     return r
 
 
-print(b([[i] for i in c])[-1], " accumulate - Накопление в список элементов из другого списка ", "\n")
+print(
+    b([[i] for i in c])[-1],
+    " accumulate - Накопление в список элементов из другого списка ",
+    "\n",
+)
 
 # Генераторы комбинаций чисел
 combi = list(it.product([0, 1], repeat=2))
@@ -38,7 +47,6 @@ for i in arr:
 print("for loop матрицы", "\n")
 
 
-
 # iter - остановка генератора  по заданному значению
 def foo():
     return random.randint(1, 3)
@@ -48,14 +56,13 @@ for i in iter(foo, 1):
     print(i, "остановка генератора  по заданному значению < 1 >")
 
 
-
-
 def generate_number():
     # Функция-генератор для чисел от 0 до 10
     current_number = 0
     while current_number <= 10:
         yield current_number
         current_number += 1
+
 
 # Создаём генератор
 number_generator = generate_number()

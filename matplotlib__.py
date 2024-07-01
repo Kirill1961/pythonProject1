@@ -3,6 +3,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 from collections import Counter
 from math import sqrt
+
 # years = [1982, 1984, 1990, 1999, 2004, 2005, 2009, 2012, 2017, 2020]
 # gdp = [110.2, 375, 762, 1245, 1425, 852, 9320, 18530, 45700, 64102]
 # plt.plot(years, gdp, color='green')
@@ -21,7 +22,7 @@ from math import sqrt
 # plt.show()
 
 
-movies = ['Entony', 'Ben', 'Kasablanka', 'Handy', 'West']
+movies = ["Entony", "Ben", "Kasablanka", "Handy", "West"]
 num_oscars = [5, 11, 3, 8, 10]
 
 # xs = [i + 0.1 for i, _ in enumerate(movies)]
@@ -32,7 +33,9 @@ num_oscars = [5, 11, 3, 8, 10]
 # plt.show()
 
 grades = [91, 15, 20, 74, 30, 40, 0, 58, 63, 87, 112]
-decil = lambda grade: grade // 10 * 10  # деление без остатка и оставили десятую часть числа
+decil = (
+    lambda grade: grade // 10 * 10
+)  # деление без остатка и оставили десятую часть числа
 histogramm = Counter(decil(grade) for grade in grades)
 print(histogramm)
 
@@ -50,7 +53,6 @@ print(histogramm)
 #
 # plt.axis([0, 101, 0, 20])  # пределы оси Х и У,  / axis([xmin, xmax, ymin, ymax]) /
 # plt.show()
-
 
 
 # import matplotlib.pyplot as plt
@@ -79,23 +81,28 @@ ax = plt.gca()
 for i in range(2):
     for j in range(2):
         print(i, j)
-        ax.add_patch(matplotlib.patches.Rectangle((j - 0.5, i - 0.5), 1, 1, hatch='o', fill=False, color='red'))
+        ax.add_patch(
+            matplotlib.patches.Rectangle(
+                (j - 0.5, i - 0.5), 1, 1, hatch="o", fill=False, color="red"
+            )
+        )
 # plt.show()
 
 import matplotlib.pyplot as plt
 
 from matplotlib.patches import Rectangle
 
-fig, axs = plt.subplots(2, 5, layout='constrained', figsize=(6.4, 3.2))
+fig, axs = plt.subplots(2, 5, layout="constrained", figsize=(6.4, 3.2))
 
-hatches = ['/', '\\', '|', '-', '+', 'x', 'o', 'O', '.', '*']
+hatches = ["/", "\\", "|", "-", "+", "x", "o", "O", ".", "*"]
 
 
 def hatches_plot(ax, h):
     ax.add_patch(Rectangle((0, 0), 2, 2, fill=False, hatch=h))
     ax.text(1, -0.5, f"' {h} '", size=15, ha="center")
-    ax.axis('equal')
-    ax.axis('off')
+    ax.axis("equal")
+    ax.axis("off")
+
 
 for ax, h in zip(axs.flat, hatches):
     hatches_plot(ax, h)

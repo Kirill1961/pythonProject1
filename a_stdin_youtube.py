@@ -22,7 +22,7 @@ type .\eek.txt | py.exe .\a_stdin_youtube.py"""
 # print(x)
 
 no = 0
-for line in sys.stdin: # читаем из txt файла и делаем форлуп forloop
+for line in sys.stdin:  # читаем из txt файла и делаем форлуп forloop
     no += 1
-    line = line.strip('')
-    print(f'{no}' + '****' + line)
+    line = line.strip("")
+    print(f"{no}" + "****" + line)

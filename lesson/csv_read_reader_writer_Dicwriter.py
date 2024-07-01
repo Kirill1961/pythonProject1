@@ -7,6 +7,7 @@
 writerow имеет 1 аргумент поэтому данные объеденяем в коллекцию:
 список,кортеж и тд
 Чтение из файлов (парсинг)"""
+
 """ newline - необязательно, режим перевода строк. Варианты: None, '\n', '\r' и '\r\n'. 
 Следует использовать только для текстовых файлов.
     delimiter — это литеральная строка, определяющая заполнитель, представляющий разделитель,
@@ -41,14 +42,16 @@ import csv
 """ __________________можно записать  в 'c_s_v.csv' готовый list,dict,tuple например такой как 
 словарь name_dic, """
 
-name_1 = 'Cirill'
-name_2 = 'Sveta'
-name_dict = {'Ylia': 'Andry'}
-with open('c_s_v.csv', 'w') as fil:
-    wri_te = csv.writer(fil, delimiter='+')  # создаём ОБ писатель wri_te котор преобр fil в строки с разделителями
+name_1 = "Cirill"
+name_2 = "Sveta"
+name_dict = {"Ylia": "Andry"}
+with open("c_s_v.csv", "w") as fil:
+    wri_te = csv.writer(
+        fil, delimiter="+"
+    )  # создаём ОБ писатель wri_te котор преобр fil в строки с разделителями
     wri_te.writerow([name_dict, name_2, name_1])
 
-with open('c_s_v.csv' ) as fil:
+with open("c_s_v.csv") as fil:
     print(fil.readline())  # читаем содержимое с помощью read, readline, readlines
 
 """ можно изначально добавить в 'csv - файл' заголовки колонок example:
@@ -59,90 +62,96 @@ with open('c_s_v.csv' ) as fil:
 """ _______________________________________Создаём csv-файл.
 Сначала в файл записываем названия колонок, затем составляем список пользователей 
 и вновь открываем файл и записываем с флагом "a" последовательность в виде list"""
-with open('c_from_data.csv', 'w', newline='') as file:
-    write = csv.writer(file, delimiter='*')  # создаём ОБ писатель with name 'write'
-    write.writerow((' name users', ' addresses users'))  # с помощью метода writerow пишем строку в виде list, в ОБ
+with open("c_from_data.csv", "w", newline="") as file:
+    write = csv.writer(file, delimiter="*")  # создаём ОБ писатель with name 'write'
+    write.writerow(
+        (" name users", " addresses users")
+    )  # с помощью метода writerow пишем строку в виде list, в ОБ
     # write, в котором открыт в режиме 'w'  ф-л 'c_from_data.csv'
 
 data_users = [
-    ['user1', 'address1'],
-    ['user2', 'address2'],
-    ['user3', 'address3'],
+    ["user1", "address1"],
+    ["user2", "address2"],
+    ["user3", "address3"],
 ]
 for data_u in data_users:
-    with open('c_from_data.csv', 'w', newline='') as file_d:
-        write_r = csv.writer(file_d, delimiter='*')  # создаём ОБ писатель with name write_r, преобр д/записи
-        write_r.writerow(data_u)  # с помощью метода writerow берём строку из цикла (data_u) и пишем в ОБ write_r
+    with open("c_from_data.csv", "w", newline="") as file_d:
+        write_r = csv.writer(
+            file_d, delimiter="*"
+        )  # создаём ОБ писатель with name write_r, преобр д/записи
+        write_r.writerow(
+            data_u
+        )  # с помощью метода writerow берём строку из цикла (data_u) и пишем в ОБ write_r
 
-with open('c_from_data.csv') as read_file:
+with open("c_from_data.csv") as read_file:
     print(read_file.read())
 
-with open('c_from_data.csv', 'r') as read_users:
+with open("c_from_data.csv", "r") as read_users:
     for read_us in csv.reader(read_users):
         print(read_us)
 
 """ _____________________Запись с помощью writerows. Помещаем названия столбцов сразу в список"""
 
 data_users = [
-    (' name users', ' addresses users'),
-    ['user1', 'address1'],
-    ['user2', 'address2'],
-    ['user3', 'address3'],
+    (" name users", " addresses users"),
+    ["user1", "address1"],
+    ["user2", "address2"],
+    ["user3", "address3"],
 ]
 
-with open('c_from_data.csv', 'w', newline='') as file_d:
-    write_r = csv.writer(file_d, delimiter=';')  # создаём ОБ писатель with name write_r
+with open("c_from_data.csv", "w", newline="") as file_d:
+    write_r = csv.writer(file_d, delimiter=";")  # создаём ОБ писатель with name write_r
     write_r.writerows(data_users)  # writerows запишет все строки rows из коллекции
 
-with open('c_from_data.csv', 'r') as read_users:
+with open("c_from_data.csv", "r") as read_users:
     for read_us in csv.reader(read_users):
         print(read_us)
 
-with open('c_from_data.csv', newline='\n') as d_read_users:
+with open("c_from_data.csv", newline="\n") as d_read_users:
     for dic_read in csv.DictReader(d_read_users):
         print(dic_read)
 
 """ ________Добавляем в ф-л cdata расписание:c помощью for + .write ; for + .writerow ; .writerows; .writelines"""
 
 
-time_dest = [['11:45', 'ROCK SOUND'],
-             ['17:55', 'ROCK SOUND'],
-             ]
-with open('c_from_data.csv', 'a', newline='\n') as f:
+time_dest = [
+    ["11:45", "ROCK SOUND"],
+    ["17:55", "ROCK SOUND"],
+]
+with open("c_from_data.csv", "a", newline="\n") as f:
     for id in time_dest:
         f.writelines(id)
 
-with open('c_data.csv', 'w') as data:
+with open("c_data.csv", "w") as data:
     for i in time_dest:
         data.write(str(i))
 
-with open('c_data.csv', 'w', newline='\n') as data:
+with open("c_data.csv", "w", newline="\n") as data:
     for i in time_dest:
         print(i)
         write = csv.writer(data)
         write.writerow(i)
 
-with open('c_data.csv', 'w', newline='') as data:
+with open("c_data.csv", "w", newline="") as data:
     write = csv.writer(data)
     write.writerows(time_dest)
 
-with open('c_data.csv') as data:
+with open("c_data.csv") as data:
     print(data.read())
 
-with open('c_data.csv') as data:
+with open("c_data.csv") as data:
     for i_d in csv.reader(data):
         print(i_d)
 
 """ ___________________________Добавка в csv с writerows, и чтение с DictReader"""
 
 data_users = [
-
-    ['Kirill', 'Voroneg', '13265987'],
-    ['Sveta', 'Voroneg', '27895246'],
-    ['Andrew', 'Voroneg', '33298744'],
+    ["Kirill", "Voroneg", "13265987"],
+    ["Sveta", "Voroneg", "27895246"],
+    ["Andrew", "Voroneg", "33298744"],
 ]
 
-with open('c_from_data.csv', 'w', newline='') as file:
+with open("c_from_data.csv", "w", newline="") as file:
     writer = csv.writer(file)  # создаём ОБ писатель with name writer
     writer.writerows(data_users)
 #
@@ -151,26 +160,29 @@ with open('c_from_data.csv', 'w', newline='') as file:
 #     for i in red:
 #         print(i)
 #
-with open('c_from_data.csv', newline='') as file:
-    reader = csv.DictReader(file, delimiter=';')  # создаём ОБ писатель with name writer
+with open("c_from_data.csv", newline="") as file:
+    reader = csv.DictReader(file, delimiter=";")  # создаём ОБ писатель with name writer
     for i in reader:
         print(i)
 
-data_app = [['July', 'Mixico', '46522197'],
-            ['Arty', 'Mexico', '52214983']
-            ]
+data_app = [["July", "Mixico", "46522197"], ["Arty", "Mexico", "52214983"]]
 
-with open('c_from_data.csv', 'a', newline='') as file:
-    writer = csv.writer(file, delimiter=',')  # создаём ОБ писатель with name writer
+with open("c_from_data.csv", "a", newline="") as file:
+    writer = csv.writer(file, delimiter=",")  # создаём ОБ писатель with name writer
     writer.writerows(data_app)
 
 """ _Запись и добавка в csv с DictWriter() из другого csv через цикл, так же заголовков полей c .writeheader()"""
 
-with open('c_from_data.csv', 'r') as da_ta:
+with open("c_from_data.csv", "r") as da_ta:
     # header = ['name users ', 'addresses users', 'Phone']
-    reader = csv.DictReader(da_ta, fieldnames=['name users //', 'addresses users', 'Phone'], )
-    with open('c_in_data.csv', 'w', newline='') as fi_le:
-        writer = csv.DictWriter(fi_le, fieldnames=['name users //', 'addresses users', 'Phone'])
+    reader = csv.DictReader(
+        da_ta,
+        fieldnames=["name users //", "addresses users", "Phone"],
+    )
+    with open("c_in_data.csv", "w", newline="") as fi_le:
+        writer = csv.DictWriter(
+            fi_le, fieldnames=["name users //", "addresses users", "Phone"]
+        )
         writer.writeheader()  # запись ключей
         for i_dict in reader:
             # print(i_dict)
@@ -182,33 +194,40 @@ with open('c_from_data.csv', 'r') as da_ta:
     ВНИМАНИЕ! убрав колонку 'addresses users /' - fieldnames убирать можно только
      в записывающем блоке"""
 
-with open('c_from_data.csv', 'r') as da_ta:
+with open("c_from_data.csv", "r") as da_ta:
     # header = ['name users ', 'addresses users', 'Phone']
-    reader = csv.DictReader(da_ta, fieldnames=['name users /', 'addresses users /', 'Phone'], )
-    with open('c_in_data.csv', 'w', newline='') as fi_le:
-        writer = csv.DictWriter(fi_le, fieldnames=['name users /', 'Phone'])
+    reader = csv.DictReader(
+        da_ta,
+        fieldnames=["name users /", "addresses users /", "Phone"],
+    )
+    with open("c_in_data.csv", "w", newline="") as fi_le:
+        writer = csv.DictWriter(fi_le, fieldnames=["name users /", "Phone"])
         writer.writeheader()  #  заголовков
         for i_dict in reader:
             # print(i_dict)
-            del i_dict ['addresses users /']
+            del i_dict["addresses users /"]
             writer.writerow(i_dict)
             print(i_dict)
 """ ________________________Простой способ записи csv в виде словаря"""
 
-with open('c_s_v.csv', 'w', newline='') as fi_le:
-    header = ['names', 'addresses', 'N_o']
-    writer = csv.DictWriter(fi_le, fieldnames=header)  # создаём ОБ для записи в него + fieldnames
+with open("c_s_v.csv", "w", newline="") as fi_le:
+    header = ["names", "addresses", "N_o"]
+    writer = csv.DictWriter(
+        fi_le, fieldnames=header
+    )  # создаём ОБ для записи в него + fieldnames
     writer.writeheader()  # запись имён полей
-    writer.writerow({'names': 'user1', 'addresses': 'address1', 'N_o': '1'})
-    writer.writerow({'names': 'user2', 'addresses': 'address2', 'N_o': '2'})
+    writer.writerow({"names": "user1", "addresses": "address1", "N_o": "1"})
+    writer.writerow({"names": "user2", "addresses": "address2", "N_o": "2"})
 
 """______________________Использование restval= и extrasaction= """
 
-with open('c_from_data.csv', 'r') as da_ta:
+with open("c_from_data.csv", "r") as da_ta:
     reader = csv.DictReader(da_ta)
-    with open('c_s_v.csv', 'w', newline='') as fi_le:
-        header = ['names', 'addresses', 'N_o']
-        writer = csv.DictWriter(fi_le, fieldnames=header, restval='I known', extrasaction='ignore')
+    with open("c_s_v.csv", "w", newline="") as fi_le:
+        header = ["names", "addresses", "N_o"]
+        writer = csv.DictWriter(
+            fi_le, fieldnames=header, restval="I known", extrasaction="ignore"
+        )
 
         writer.writeheader()
         for i_dict in reader:

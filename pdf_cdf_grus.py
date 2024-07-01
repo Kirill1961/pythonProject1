@@ -13,7 +13,9 @@ x1 = -100
 x2 = 100
 mu = 0
 sigma = 1
-data = sorted(np.random.normal(loc=0, scale=1, size=1000))  # задаём loc=0 мат.ожидание, scale=1 дисперсия
+data = sorted(
+    np.random.normal(loc=0, scale=1, size=1000)
+)  # задаём loc=0 мат.ожидание, scale=1 дисперсия
 # data = [-5, -4, -3, -2, -1, -0.5, -0.4, -0.3, -0.2, -0.1, 0.1, 0.2, 0.3, 0.4, 0.5, 1, 2, 3, 4, 5 ]
 # print(data)
 
@@ -36,22 +38,30 @@ print(uniform_pdf(random.random()), "uniform_pdf")
 
 # PDF (ДФР) нормального распределения
 
+
 def normal_pdf(x, mu, sigma):
     sqrt_two_pi = math.sqrt(2 * math.pi)
-    return (math.exp(-(x - mu) ** 2 / 2 / sigma ** 2) / (sqrt_two_pi * sigma))
+    return math.exp(-((x - mu) ** 2) / 2 / sigma**2) / (sqrt_two_pi * sigma)
 
 
 # print(normal_pdf(2), "normal_pdf")
 
 # Графики некоторых ДФР
 
-xs = [x / 10.0 for x in range(x1, x2)]  # выборка для PDF, делим на 10 для масштабирования
+xs = [
+    x / 10.0 for x in range(x1, x2)
+]  # выборка для PDF, делим на 10 для масштабирования
 # print(xs, "выборка")
 # plt.plot(xs, [normal_pdf(x, sigma=1) for x in xs], '-', label='mu=0, sigma=1')
 # plt.plot(xs, [normal_pdf(x, mu, sigma) for x in xs], '--', label=f'mu={mu}, sigma={sigma}')
 # plt.plot(xs, [normal_pdf(x, sigma=0.5) for x in xs], ':', label='mu=0, sigma=0.5')
 # plt.plot(xs, [normal_pdf(x, mu=-1) for x in xs], '-.', label='mu=-1, sigma=1')
-plt.plot(data, [normal_pdf(x, mu, sigma) for x in data], '--', label=f'mu={mu}, sigma={sigma}')  # data - рандомная
+plt.plot(
+    data,
+    [normal_pdf(x, mu, sigma) for x in data],
+    "--",
+    label=f"mu={mu}, sigma={sigma}",
+)  # data - рандомная
 plt.legend()
 
 # plt.show()
@@ -61,6 +71,7 @@ plt.legend()
 
 # CDF (ИФР) - commutative distribution function (cdf), интегральная ф-ция распределения,
 # определяет вероятность случайного значения  < или = некоторому значению " x ".
+
 
 def uniform_cdf(x):
     if x < 0:
@@ -76,20 +87,28 @@ print(uniform_cdf(random.random()), "uniform_cdf")
 
 # ИФР нормального распределения ещё называют ф-ция ошибки
 
+
 def normal_cdf(x, mu, sigma):
     # print(mu, sigma, ">>>>>>>>>>>>>>>>>>>>>>>")
-    return ((1 + scipy.special.erf((x - mu) / math.sqrt(2) / sigma)) / 2)
+    return (1 + scipy.special.erf((x - mu) / math.sqrt(2) / sigma)) / 2
 
 
-xs = [x_ / 10.0 for x_ in range(x1, x2)]  # выборка для CDF, делим на 10 для масштабирования
+xs = [
+    x_ / 10.0 for x_ in range(x1, x2)
+]  # выборка для CDF, делим на 10 для масштабирования
 # print(xs)
 # plt.plot(xs, [normal_cdf(x_, sigma=1) for x_ in xs], '-', label='mu=0, sigma=1')
 # plt.plot(xs, [normal_cdf(x, mu, sigma) for x in xs], '--', label=f'mu={mu}, sigma={sigma}')
 # plt.plot(xs, [normal_cdf(x, sigma=0.5) for x in xs], ':', label='mu=0, sigma=0.5')
 # plt.plot(xs, [normal_cdf(x, mu=-1) for x in xs], '-.', label='mu=-1, sigma=1')
-plt.plot(data, [normal_cdf(x, mu, sigma) for x in data], '--', label=f'mu={mu}, sigma={sigma}')  # data - рандомная
-plt.xlabel('Значение из выборки')
-plt.ylabel('Вероятность')
+plt.plot(
+    data,
+    [normal_cdf(x, mu, sigma) for x in data],
+    "--",
+    label=f"mu={mu}, sigma={sigma}",
+)  # data - рандомная
+plt.xlabel("Значение из выборки")
+plt.ylabel("Вероятность")
 plt.legend()
 # plt.show()
 
@@ -100,5 +119,7 @@ mu = 0  # Среднее значение
 sigma = 1  # Стандартное отклонение
 # Вычисляем вероятность для значения x=
 x = 5  # задаём значение для CDF для поиска вероятности что Х примет значение < или = заданному Х
-probability = norm.cdf(x, loc=mu, scale=sigma)  # norm - нормальное (или гауссово) распределение
+probability = norm.cdf(
+    x, loc=mu, scale=sigma
+)  # norm - нормальное (или гауссово) распределение
 print(f"Вероятность, что случайная величина <= {x}:", probability)

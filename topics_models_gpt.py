@@ -7,13 +7,17 @@ from collections import defaultdict
 import random
 
 
-
 def fix_unicode(text):
-    return text.replace(u"\u2019", "'")  # изменение кодировки
+    return text.replace("\u2019", "'")  # изменение кодировки
+
 
 url = "http://radar.oreilly.com/2010/06/what-is-data-science.html"  # сохраняем сайт в переменную
-html = requests.get(url).text  # requests.get - запрос сайта по адресу из переменной url, .text - очистка от тегов и тд
-soup = BeautifulSoup(html, 'html5lib')  # 'html5lib' - формат возвращаемого текста из переменной html
+html = requests.get(
+    url
+).text  # requests.get - запрос сайта по адресу из переменной url, .text - очистка от тегов и тд
+soup = BeautifulSoup(
+    html, "html5lib"
+)  # 'html5lib' - формат возвращаемого текста из переменной html
 
 content = soup.find("div", "entry-content")  #
 regex = r"[\w']+|[\.]"  # re выбирает слова из тега "div" класса "entry-content"
@@ -21,7 +25,9 @@ regex = r"[\w']+|[\.]"  # re выбирает слова из тега "div" к�
 document_radar = []
 
 
-for paragraph in content("p"):  # извлекаем текст с тегом <р> из ("div", "entry-content")
+for paragraph in content(
+    "p"
+):  # извлекаем текст с тегом <р> из ("div", "entry-content")
     words = re.findall(regex, fix_unicode(paragraph.text))  # отбор с помощью re слов
     document_radar.extend(words)
     # print(document_radar)
@@ -72,5 +78,3 @@ for topic_id, topic_words in lda_model.print_topics():
 for doc_id, doc_topics in enumerate(lda_model[corpus]):
     pass
     # print(f"Document {doc_id}: {doc_topics}")
-
-
